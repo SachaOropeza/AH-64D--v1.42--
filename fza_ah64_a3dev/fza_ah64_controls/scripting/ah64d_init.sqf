@@ -205,7 +205,7 @@ if (isNil "fza_ah64_fx_init") then
 	fza_ah64_hducolor = [0.1, 1, 0, 1];
 	fza_ah64_schedarray = [fza_ah64_turrets,fza_ah64_pnvscontrol,fza_ah64_worldtoscreen,fza_ah64_targetcycle,fza_ah64_slipcheck,fza_ah64_timetowp,fza_ah64_rotordam,fza_ah64_ldrfcall,fza_ah64_hmdihadss,fza_ah64_bladerot]; //disabled fza_ah64_cpg_controls//
 	fza_ah64_asemisarray = [];
-	if(isNil "fza_ah64_pfsstate") then {30 cutRsc ["fza_ah64_mapfake","PLAIN"]; fza_ah64_pfsstate = true;};
+	if(isNil "fza_ah64_pfsstate") then {fza_ah64_mapfaker = addMissionEventHandler ["Draw3D", {[0] call fza_ah64_pfsched;}]; fza_ah64_pfsstate = true;};
 //EXPERIMENTAL - RUN ONCE FOR PLAYER ONLY//
 _weapontracker = [player] execvm "\fza_ah64_controls\scripting\page_wpn.sqf";
 _wcatracker = [player] execvm "\fza_ah64_controls\scripting\page_wca.sqf";

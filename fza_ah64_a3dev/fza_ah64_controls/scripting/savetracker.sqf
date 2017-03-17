@@ -11,7 +11,7 @@ if (time > (fza_ah64_missiontimestamp + 1)) then
 	fza_ah64_pf_daytime = 0;
 	fza_ah64_overallticker = diag_ticktime;
 	sleep 1;
-	30 cutRsc ["fza_ah64_mapfake","PLAIN"];
+	//30 cutRsc ["fza_ah64_mapfake","PLAIN"];
 	fza_ah64_pfsstate = true;
 	if(fza_ah64_ihadssoff == 0 && (vehicle player iskindof "fza_ah64base" && (player == driver vehicle player || player == gunner vehicle player))) then
 	{
