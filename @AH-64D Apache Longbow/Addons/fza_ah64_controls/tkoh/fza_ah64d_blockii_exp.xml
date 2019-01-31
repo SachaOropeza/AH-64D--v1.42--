@@ -536,7 +536,15 @@
 		<!-- latCyclic - collective * 0.2 chagned to 0.1 -->
 		<!-- lonCyclic/pedals - collective * 0.60 changed to 0.30 -->
 		<!-- A1m changed from 11 to 6.5 -->
-		<!-- B1m changed from 22 to 11 -->
+		<!-- B1m changed from 11 to 6.5 -->
+		<!-- B1m changed from 22 to 11, changed clamp values: -13, 18 to -13, 13 now to -6.5, 6.5, now -12.5, 20.0-->
+		<!-- B1m changed from lonCyclic * 6.5, to linearInterp(-12.5, 20.0f, (lonCyclic * 1.0) * 0.5, A1m * 6.5
+		<!-- A1m = backward disc tilt?, B1m = sideways disc tilt?, Th0m = collective pitch? -->
+		<!-- stabilator now operates as a function of collective & airspeed
+			 at a hover and while on the ground stabilitor is set to 25 degrees trailing edge down. At ~90kts
+			 the stabilator is then at ~ 0 degrees trailing edge down.
+			 New expression = (collective * 10) + 25 / clamp(Vms, 1, 102.889),
+		-->
       <MathExpression>
         <Expression>
 
@@ -544,18 +552,20 @@
 		  FPSP =  clamp((pitchRateRad/3) * (Vms/60), -0.1, 0.1),
 		  FPSR =  clamp(rollRateRad * 0.02 * (Vms/60), -0.1, 0.1),
 
-		  PSAS = clamp(pitchRateRad * 0.15, -0.1 , 0.1 ),
+		  PSAS    = clamp(pitchRateRad * 0.15, -0.1 , 0.1 ),
 		  RollSAS = clamp(rollRateRad * 0.075, -0.1 , 0.1 ),
-		  YawSAS = clamp(yawRateRad * 3, -0.1 , 0.1 ),
+		  YawSAS  = clamp(yawRateRad * 3, -0.1 , 0.1 ),
 
           latCyclic = latCyclic - RollSAS - collective * 0.1 - FPSR + pedals * 0.15,
-		  lonCyclic = lonCyclic/clamp(Vms/50, 1, 999) + PSAS - 0.25 + collective * 0.30 - pedals * 0.06 + FPSP,
-		  pedals = pedals + 0.25 + YawSAS - collective * 0.30 + FPSY,
+		  lonCyclic = lonCyclic / clamp(Vms/50, 1, 999) + PSAS - 0.25 + collective * 0.30 - pedals * 0.06 + FPSP,
+		  pedals    = pedals + 0.25 + YawSAS - collective * 0.30 + FPSY,
 
 
-          A1m = latCyclic * 6.5,
+		  A1m = linearInterp(-12.5, 20, (latCyclic * 1.0) * 0.5),
+          A1m = latCyclic * 11,
           A1m = clamp( A1m , -12.5 , 20 ),
 
+		  B1m = linearInterp(-13, -18, (lonCyclic * 1.0) * 0.5),
           B1m = lonCyclic * 11,
           B1m = clamp( B1m , -13 , 18 ),
 
@@ -566,12 +576,13 @@
 
           Th0t = linearInterp( 30 , -5,  (pedals  +1) * 0.5 ),
 
-          A1m = degToRad(A1m),
-          B1m = degToRad(B1m),
+          A1m  = degToRad(A1m),
+          B1m  = degToRad(B1m),
           Th0m = degToRad(Th0m),
           Th0t = degToRad(Th0t),
 
-          profondeur = lonCyclic*10 + 4.5/clamp(Vms, 1, 999),
+          profondeur     = collective * 10 + 25 / clamp(Vms, 1, 102.889),
+		  profondeur     = clamp(profondeur, -5, 25),
           mainRotorBrake = rotorBrake
 
         </Expression>
