@@ -535,6 +535,8 @@
 		<!-- FPSR changed from 0.2 to 0.05, 0.1 -->
 		<!-- latCyclic - collective * 0.2 chagned to 0.1 -->
 		<!-- lonCyclic/pedals - collective * 0.60 changed to 0.30 -->
+		<!-- A1m changed from 11 to 6.5 -->
+		<!-- B1m changed from 22 to 11 -->
       <MathExpression>
         <Expression>
 
@@ -551,10 +553,10 @@
 		  pedals = pedals + 0.25 + YawSAS - collective * 0.30 + FPSY,
 
 
-          A1m = latCyclic * 11,
+          A1m = latCyclic * 6.5,
           A1m = clamp( A1m , -12.5 , 20 ),
 
-          B1m = lonCyclic * 22,
+          B1m = lonCyclic * 11,
           B1m = clamp( B1m , -13 , 18 ),
 
           Th0m= collective * 13 + 6.5,
