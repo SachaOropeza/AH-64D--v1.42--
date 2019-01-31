@@ -185,7 +185,8 @@
 		180	0.000
 	</LiftDueToAoA>
 
-	<DragDueToAoA scale="1.1"  >
+	<!-- Changed from 1.1 to 0.8 -->
+	<DragDueToAoA scale="0.8"  >
 		-180	1.995
 		-170	2.291
 		-160	3.142
@@ -231,7 +232,8 @@
 		180	1.995
 	</DragDueToAoA>
 
-  <DragDueToSideslip  scale="1" >
+	<!-- Changed from 1 to 0.8 -->
+  <DragDueToSideslip  scale="0.8" >
 		-180	0.000
 		-170	0.459
 		-160	1.868
@@ -448,14 +450,14 @@
     </DriveTrain>
   </DriveTrains>
 
-  <ControlSystem>
-
+ <ControlSystem>
+  
 		<CSComponent type="FCSAutoHoverTOH">
       <YawController P="0.1" D="0.025"/>
       <PitchController P="0.15" D="0.025"/>
       <RollController P="0.15" D="0.025"/>
     </CSComponent>
-
+    
     <CSComponent type="FCSHelicopterAutoTrim100" >
       <YawRateAndSideslipController printDebugInfo="false">
         <YawRatePID P="0.04"  I="0.01" D="0.0" offset="0.0" integralMin="-25" integralMax="25" />
@@ -467,22 +469,22 @@
 
       <PitchRateController printDebugInfo="false">
         <PID P="0.06"  I="0.01" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxPitchRate maxPitchRate="360" />
+        <MaxPitchRate maxPitchRate="35" />
         <InputMapping nonlinearity="1" />
       </PitchRateController>
 
       <RollRateController printDebugInfo="false">
         <PID P="0.01"  I="0.04" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxRollRate maxRollRate="360" />
+        <MaxRollRate maxRollRate="50" />
         <InputMapping nonlinearity="1" />
       </RollRateController>
 
-    </CSComponent>
-
+    </CSComponent>    
+	
 	<CSComponent type="FCSRotationDamper">
   <YawController P="1.0" D="0.01"/>
-  <PitchController P="0.2" D="0.001"/>
-  <RollController P="0.2" D="0.001"/>
+  <PitchController P="1.0" D="0.001"/>
+  <RollController P="1.0" D="0.001"/>
  </CSComponent>
 
     <CSComponent type="GenericControlSystem">
@@ -491,7 +493,7 @@
         <Variable name="CSComponent_1/ControlOutput/pitchRollControl" member="pitch" alias="lonCyclic" />
         <Variable name="CSComponent_1/ControlOutput/pedals" alias="pedals" />
         <Variable name="CSComponent_1/ControlOutput/collective" alias="collective" />
-
+        
         <Variable alias="rotorBrake" name="CSComponent_1/ControlOutput/rotorBrake"  />
 
         <Variable name="angularVelocityBCS" member="X" alias="pitchRateRad" />
@@ -504,7 +506,7 @@
         <Variable name="MainRotor/A1" alias="A1m" />
         <Variable name="MainRotor/B1" alias="B1m" />
         <Variable name="MainRotor/theta0" alias="Th0m" />
-
+        
         <Variable alias="mainRotorBrake"  name="MainRotor/rotorBrakeInput" />
 
         <Variable name="TailRotor/A1" alias="A1t" />
@@ -512,15 +514,15 @@
         <Variable name="TailRotor/theta0" alias="Th0t" />
 
         <Variable name="HorizontalStabilizer/controlSurfaceDeflection" alias="profondeur" />
-
+		
 		<Variable name="velocityBCS" member="Y" alias="Vms" />
 		<Variable name="velocityBCS" member="X" alias="Cms" />
 		<Variable name="velocityBCS" member="Z" alias="Bms" />
-
+		
 		<Variable alias="FPSY" dataType="REAL" name="FPSY"/>
 		<Variable alias="FPSP" dataType="REAL" name="FPSP"/>
 		<Variable alias="FPSR" dataType="REAL" name="FPSR"/>
-
+		
 		<Variable alias="YawSAS" dataType="REAL" name="YawSAS"/>
 		<Variable alias="RollSAS" dataType="REAL" name="RollSAS"/>
 		<Variable alias="PSAS" dataType="REAL" name="PSAS"/>
@@ -528,12 +530,15 @@
         <!-- <Variable alias="myVar" dataType="REAL" name="myVar"/> -->
       </Variables>
 
+		<!-- FPSY changed from 0.2 to 0.05 -->
+		<!-- FPSP changed from 0.2 to 0.05 -->
+		<!-- FPSR changed from 0.2 to 0.05 -->
       <MathExpression>
         <Expression>
 
-		  FPSY =  clamp(Cms * (Vms/30), -0.2, 0.2),
-		  FPSP =  clamp((pitchRateRad/3) * (Vms/60), -0.2, 0.2),
-		  FPSR =  clamp(rollRateRad * 0.02 * (Vms/60), -0.2, 0.2),
+		  FPSY =  clamp(Cms * (Vms/30), -0.05, 0.05),
+		  FPSP =  clamp((pitchRateRad/3) * (Vms/60), -0.05, 0.05),
+		  FPSR =  clamp(rollRateRad * 0.02 * (Vms/60), -0.05, 0.05),
 
 		  PSAS = clamp(pitchRateRad * 0.15, -0.1 , 0.1 ),
 		  RollSAS = clamp(rollRateRad * 0.075, -0.1 , 0.1 ),
