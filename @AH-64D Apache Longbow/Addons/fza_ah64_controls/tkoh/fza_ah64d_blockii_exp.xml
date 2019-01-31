@@ -530,23 +530,25 @@
         <!-- <Variable alias="myVar" dataType="REAL" name="myVar"/> -->
       </Variables>
 
-		<!-- FPSY changed from 0.2 to 0.05 -->
-		<!-- FPSP changed from 0.2 to 0.05 -->
-		<!-- FPSR changed from 0.2 to 0.05 -->
+		<!-- FPSY changed from 0.2 to 0.05, 0.1 -->
+		<!-- FPSP changed from 0.2 to 0.05, 0.1 -->
+		<!-- FPSR changed from 0.2 to 0.05, 0.1 -->
+		<!-- latCyclic - collective * 0.2 chagned to 0.1 -->
+		<!-- lonCyclic/pedals - collective * 0.60 changed to 0.30 -->
       <MathExpression>
         <Expression>
 
-		  FPSY =  clamp(Cms * (Vms/30), -0.05, 0.05),
-		  FPSP =  clamp((pitchRateRad/3) * (Vms/60), -0.05, 0.05),
-		  FPSR =  clamp(rollRateRad * 0.02 * (Vms/60), -0.05, 0.05),
+		  FPSY =  clamp(Cms * (Vms/30), -0.1, 0.1),
+		  FPSP =  clamp((pitchRateRad/3) * (Vms/60), -0.1, 0.1),
+		  FPSR =  clamp(rollRateRad * 0.02 * (Vms/60), -0.1, 0.1),
 
 		  PSAS = clamp(pitchRateRad * 0.15, -0.1 , 0.1 ),
 		  RollSAS = clamp(rollRateRad * 0.075, -0.1 , 0.1 ),
 		  YawSAS = clamp(yawRateRad * 3, -0.1 , 0.1 ),
 
-          latCyclic = latCyclic - RollSAS - collective * 0.2 - FPSR + pedals * 0.15,
-		  lonCyclic = lonCyclic/clamp(Vms/50, 1, 999) + PSAS - 0.25 + collective * 0.60 - pedals * 0.06 + FPSP,
-		  pedals = pedals + 0.25 + YawSAS - collective * 0.60 + FPSY,
+          latCyclic = latCyclic - RollSAS - collective * 0.1 - FPSR + pedals * 0.15,
+		  lonCyclic = lonCyclic/clamp(Vms/50, 1, 999) + PSAS - 0.25 + collective * 0.30 - pedals * 0.06 + FPSP,
+		  pedals = pedals + 0.25 + YawSAS - collective * 0.30 + FPSY,
 
 
           A1m = latCyclic * 11,
