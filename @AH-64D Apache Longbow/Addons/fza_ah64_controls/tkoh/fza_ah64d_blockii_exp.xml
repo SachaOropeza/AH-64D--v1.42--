@@ -185,7 +185,8 @@
 		180	0.000
 	</LiftDueToAoA>
 
-	<DragDueToAoA scale="1.1"  >
+	<!-- Changed from 1.1 to 0.8 now 0.9 -->
+	<DragDueToAoA scale="0.9"  >
 		-180	1.995
 		-170	2.291
 		-160	3.142
@@ -231,7 +232,8 @@
 		180	1.995
 	</DragDueToAoA>
 
-  <DragDueToSideslip  scale="1" >
+	<!-- Changed from 1 to 0.8 now 1.0 now back to 0.8-->
+  <DragDueToSideslip  scale="0.8" >
 		-180	0.000
 		-170	0.459
 		-160	1.868
@@ -448,7 +450,7 @@
     </DriveTrain>
   </DriveTrains>
 
-  <ControlSystem>
+<ControlSystem>
 
 		<CSComponent type="FCSAutoHoverTOH">
       <YawController P="0.1" D="0.025"/>
@@ -528,41 +530,63 @@
         <!-- <Variable alias="myVar" dataType="REAL" name="myVar"/> -->
       </Variables>
 
+		<!-- FPSY changed from 0.2 to 0.05, 0.1 -->
+		<!-- FPSP changed from 0.2 to 0.05, 0.1 -->
+		<!-- FPSR changed from 0.2 to 0.05, 0.1 -->
+		<!-- latCyclic - collective * 0.2 chagned to 0.1 -->
+		<!-- PSAS changed from -0.1, 0.1 to -0.2, 0.1 (should match the 20% authority in forward pitch -->
+		<!-- lonCyclic/pedals - collective * 0.60 changed to 0.30 -->
+		<!-- A1m = backward disc tilt?, B1m = sideways disc tilt?, Th0m = collective pitch? -->
+		<!-- stabilator now operates as a function of collective & airspeed
+			 at a hover and while on the ground stabilitor is set to 25 degrees trailing edge down. At ~90kts
+			 the stabilator is then at ~ 0 degrees trailing edge down. The modifier of Vms / 46.3 should put
+			 the stabilator to 8 degrees trailing edge down at 90kts with the collective at 75% of it's alowable
+			 travel...
+			 New expression = (collective * 10) + 25 / clamp(Vms, 1, 102.889),
+			 A1m values changed from -12.5, 20 to -8, 16 now -4, 8 now -8, 8 now -8, 10 now -7.5, 9.5 no -7, 9
+			 B1m values changed from -13, 18 to -13, 10 now -13, 8 now -6.5, 4 now -10, 10 now -10, 8 now -12, 7.5 now -11.5, 7 now -11.5, 9
+			 
+			 negative = forward/left?
+			 positive = rearward/right?
+		-->
       <MathExpression>
         <Expression>
 
-		  FPSY =  clamp(Cms * (Vms/30), -0.2, 0.2),
-		  FPSP =  clamp((pitchRateRad/3) * (Vms/60), -0.2, 0.2),
-		  FPSR =  clamp(rollRateRad * 0.02 * (Vms/60), -0.2, 0.2),
+		  FPSY =  clamp(Cms * (Vms/30), -0.1, 0.1),
+		  FPSP =  clamp((pitchRateRad/3) * (Vms/60), -0.1, 0.1),
+		  FPSR =  clamp(rollRateRad * 0.02 * (Vms/60), -0.1, 0.1),
 
-		  PSAS = clamp(pitchRateRad * 0.15, -0.1 , 0.1 ),
+		  PSAS    = clamp(pitchRateRad * 0.15, -0.1 , 0.1 ),
 		  RollSAS = clamp(rollRateRad * 0.075, -0.1 , 0.1 ),
-		  YawSAS = clamp(yawRateRad * 3, -0.1 , 0.1 ),
+		  YawSAS  = clamp(yawRateRad * 3, -0.1 , 0.1 ),
 
-          latCyclic = latCyclic - RollSAS - collective * 0.2 - FPSR + pedals * 0.15,
-		  lonCyclic = lonCyclic/clamp(Vms/50, 1, 999) + PSAS - 0.25 + collective * 0.60 - pedals * 0.06 + FPSP,
-		  pedals = pedals + 0.25 + YawSAS - collective * 0.60 + FPSY,
+          latCyclic = latCyclic - RollSAS - collective * 0.1 - FPSR + pedals * 0.15,
+		  lonCyclic = lonCyclic / clamp(Vms/50, 1, 102.889) + PSAS - 0.25 + collective * 0.30 - pedals * 0.06 + FPSP,
+		  pedals    = pedals + 0.25 + YawSAS - collective * 0.30 + FPSY,
 
 
-          A1m = latCyclic * 11,
-          A1m = clamp( A1m , -12.5 , 20 ),
+		  A1m = linearInterp(-7, 9, (latCyclic * 1.0) * 0.5),
+          A1m = latCyclic * 10,
+          A1m = clamp( A1m , -7 , 9),
 
-          B1m = lonCyclic * 22,
-          B1m = clamp( B1m , -13 , 18 ),
+		  B1m = linearInterp(-11.5, 9, (lonCyclic * 1.0) * 0.5),
+          B1m = lonCyclic * 10,
+          B1m = clamp( B1m , -11.5 , 9 ),
 
           Th0m= collective * 13 + 6.5,
 
           A1t = 0.0,
           B1t = 0.0,
 
-          Th0t = linearInterp( 30 , -5,  (pedals  +1) * 0.5 ),
+          Th0t = linearInterp( 30 , -5,  (pedals  + 1) * 0.5 ),
 
-          A1m = degToRad(A1m),
-          B1m = degToRad(B1m),
+          A1m  = degToRad(A1m),
+          B1m  = degToRad(B1m),
           Th0m = degToRad(Th0m),
           Th0t = degToRad(Th0t),
 
-          profondeur = lonCyclic*10 + 4.5/clamp(Vms, 1, 999),
+          profondeur     = (collective * (10 * (Vms / 46.3))) + 25 / clamp(Vms, 1, 102.889),
+		  profondeur     = clamp(profondeur, -5, 25),
           mainRotorBrake = rotorBrake
 
         </Expression>
