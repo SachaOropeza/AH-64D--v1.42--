@@ -527,6 +527,17 @@
 		<Variable alias="RollSAS" dataType="REAL" name="RollSAS"/>
 		<Variable alias="PSAS" dataType="REAL" name="PSAS"/>
 
+		<Variable alias="a" dataType="REAL" name="a"/>
+		<Variable alias="b" dataType="REAL" name="b"/>
+		<Variable alias="c" dataType="REAL" name="c"/>
+		
+		<Variable alias="v1" dataType="REAL" name="v1"/>
+		<Variable alias="v2" dataType="REAL" name="v2"/>
+		<Variable alias="v3" dataType="REAL" name="v3"/>
+		<Variable alias="v4" dataType="REAL" name="v4"/>
+		
+		<Variable alias="mod" dataType="REAL" name="mod"/>
+
         <!-- <Variable alias="myVar" dataType="REAL" name="myVar"/> -->
       </Variables>
 
@@ -548,6 +559,11 @@
 			 
 			 negative = forward/left?
 			 positive = rearward/right?
+			 
+			 Stabilator equation = (a / (Vms / v1)) + (b * (Vms / v2)) + (c * (Vms / (v3 * clamp(mod, 1, 1.33)))),
+			 where a = 30, b = -1.5, c = -12
+			 where v1 = 15.433 (30kts), v2 = 30.867 (60kts), v3 = 61.733 (120kts), v4 = 34.725 (67.5kts)
+			 where mod = Vms / v4
 		-->
       <MathExpression>
         <Expression>
@@ -584,9 +600,20 @@
           B1m  = degToRad(B1m),
           Th0m = degToRad(Th0m),
           Th0t = degToRad(Th0t),
-
-          profondeur     = (collective * (10 * (Vms / 46.3))) + 25 / clamp(Vms, 1, 102.889),
-		  profondeur     = clamp(profondeur, -5, 25),
+		  
+		  a = 30,
+		  b = -1.5,
+		  c = -12,
+		  
+		  v1 = 15.433,
+		  v2 = 30.867,
+		  v3 = 61.733,
+		  v4 = 34.725,
+		  
+		  mod = clamp(Vms, 1, 102.889) / v4,
+		  
+		  profondeur = (a / (clamp(Vms, 1, 102.889) / v1)) + (b * (clamp(Vms, 1, 102.889) / v2)) + (c * (clamp(Vms, 1, 102.889) / (v3 * clamp(mod, 1, 1.33)))),  
+		  profondeur = clamp(profondeur, -5, 25),
           mainRotorBrake = rotorBrake
 
         </Expression>
@@ -1040,7 +1067,8 @@
         <Front x="0.0" y="1.0" z="0.0"/>
         <SurfaceArea area="6.797"/>
       </Geometry>
-      <ControlResponse controlSurfaceLiftCoeffDerivative="0.4" controlSurfaceForceArmPos="0.0" maxControlSurfaceDeflection="39" minControlSurfaceDeflection="-8=" controlSurfaceDeflectionRateLimit="20.0"/>
+	  <!-- deflection changed 39 to 25 and -8 to -5, deflectionRateLimit from 20 to 10 -->
+      <ControlResponse controlSurfaceLiftCoeffDerivative="0.4" controlSurfaceForceArmPos="0.0" maxControlSurfaceDeflection="25" minControlSurfaceDeflection="-5=" controlSurfaceDeflectionRateLimit="10.0"/>
 
       <AerodynamicFeatures>
         <DynamicPressureRatio>
