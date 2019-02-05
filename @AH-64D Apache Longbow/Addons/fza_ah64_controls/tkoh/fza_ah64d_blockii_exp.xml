@@ -535,6 +535,13 @@
 		<Variable alias="v2" dataType="REAL" name="v2"/>
 		<Variable alias="v3" dataType="REAL" name="v3"/>
 		<Variable alias="v4" dataType="REAL" name="v4"/>
+		<Variable alias="v5" dataType="REAL" name="v5"/>
+		
+		<Variable alias="collMod1" dataType="REAL" name="collMod1"/>
+		<Variable alias="collMod2" dataType="REAL" name="collMod2"/>
+		
+		<Variable alias="stabConst1" dataType="REAL" name="stabConst1"/>
+		<Variable alias="stabConst2" dataType="REAL" name="stabConst2"/>
 		
 		<Variable alias="mod" dataType="REAL" name="mod"/>
 
@@ -564,6 +571,12 @@
 			 where a = 30, b = -1.5, c = -12
 			 where v1 = 15.433 (30kts), v2 = 30.867 (60kts), v3 = 61.733 (120kts), v4 = 34.725 (67.5kts)
 			 where mod = Vms / v4
+			
+			 Collective equation #1, collMod1 = ((2 - (collective / 0.5)) * stabConst1) / clamp((v5 / Vms), 1.519, 1.0),
+			 Collective equation #2, collMod2 = ((collective / 0.5) * stabConst2) / clamp((v5 / Vms), 1.519, 1.0),
+			 where collective = 0 to 1, stabConst1 = -7.5, stabConst2 = 7.5, v5 = 125.010 (243kts)
+			 
+			 profondeur = collMod1 + profondeur + collMod2,
 		-->
       <MathExpression>
         <Expression>
@@ -579,7 +592,6 @@
           latCyclic = latCyclic - RollSAS - collective * 0.1 - FPSR + pedals * 0.15,
 		  lonCyclic = lonCyclic / clamp(Vms/50, 1, 102.889) + PSAS - 0.25 + collective * 0.30 - pedals * 0.06 + FPSP,
 		  pedals    = pedals + 0.25 + YawSAS - collective * 0.30 + FPSY,
-
 
 		  A1m = linearInterp(-7, 9, (latCyclic * 1.0) * 0.5),
           A1m = latCyclic * 10,
@@ -609,11 +621,20 @@
 		  v2 = 30.867,
 		  v3 = 61.733,
 		  v4 = 34.725,
+		  v5 = 125.010,
+
+		  stabConst1 = -7.5,
+		  stabConst2 = 7.5,
 		  
 		  mod = clamp(Vms, 1, 102.889) / v4,
 		  
+		  collMod1 = ((2 - (collective / 0.5)) * stabConst1) / clamp((v5 / Vms), 1.519, 1.0),
+		  collMod2 = ((collective / 0.5) * stabConst2) / clamp((v5 / Vms), 1.519, 1.0),
+		  
 		  profondeur = (a / (clamp(Vms, 1, 102.889) / v1)) + (b * (clamp(Vms, 1, 102.889) / v2)) + (c * (clamp(Vms, 1, 102.889) / (v3 * clamp(mod, 1, 1.33)))),  
+		  profondeur = collMod1 + profondeur + collMod2,
 		  profondeur = clamp(profondeur, -5, 25),
+		  
           mainRotorBrake = rotorBrake
 
         </Expression>
