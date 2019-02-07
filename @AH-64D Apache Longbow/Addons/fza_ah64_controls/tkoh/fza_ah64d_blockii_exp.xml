@@ -590,7 +590,7 @@
 		  YawSAS  = clamp(yawRateRad * 3, -0.1 , 0.1 ),
 
           latCyclic = latCyclic - RollSAS - collective * 0.1 - FPSR + pedals * 0.15,
-		  lonCyclic = lonCyclic / clamp(Vms/50, 1, 102.889) + PSAS - 0.25 + collective * 0.30 - pedals * 0.06 + FPSP + pitchRateRad * 3,
+		  lonCyclic = lonCyclic / clamp(Vms/50, 1, 102.889) + PSAS - 0.25 + collective * 0.30 - pedals * 0.06 + FPSP,
 		  pedals    = pedals + 0.25 + YawSAS - collective * 0.30 + FPSY,
 
 		  A1m = linearInterp(-7, 9, (latCyclic * 1.0) * 0.5),
