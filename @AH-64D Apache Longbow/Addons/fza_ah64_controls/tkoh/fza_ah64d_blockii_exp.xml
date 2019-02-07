@@ -1088,8 +1088,8 @@
         <Front x="0.0" y="1.0" z="0.0"/>
         <SurfaceArea area="6.797"/>
       </Geometry>
-	  <!-- deflection changed 39 to 25 and -8 to -5, deflectionRateLimit from 20 to 10 -->
-      <ControlResponse controlSurfaceLiftCoeffDerivative="0.4" controlSurfaceForceArmPos="0.0" maxControlSurfaceDeflection="25" minControlSurfaceDeflection="-5=" controlSurfaceDeflectionRateLimit="10.0"/>
+	  <!-- deflection changed 39 to 25 and -8 to -5, deflectionRateLimit from 20 to 10 now 3.5 -->
+      <ControlResponse controlSurfaceLiftCoeffDerivative="0.4" controlSurfaceForceArmPos="0.0" maxControlSurfaceDeflection="25" minControlSurfaceDeflection="-5=" controlSurfaceDeflectionRateLimit="3.5"/>
 
       <AerodynamicFeatures>
         <DynamicPressureRatio>
@@ -1205,49 +1205,50 @@
 
         <GroundEffect startDistance="1.2" strength="1.5"/>
         <LiftCurve>
-	-180	0.000
-	-170	0.642
-	-160	0.865
-	-150	0.867
-	-140	0.792
-	-130	0.692
-	-120	0.575
-	-110	0.431
-	-100	0.236
-	-90	0.000
-	-80	-0.294
-	-70	-0.558
-	-60	-0.745
-	-50	-0.847
-	-40	-0.847
-	-30	-0.745
-	-25	-0.795
-	-20	-0.950
-	-15	-1.030
-	-10	-0.710
-	-5	-0.356
-	0	0.000
-	5	0.356
-	10	0.710
-	15	1.030
-	20	0.950
-	25	0.795
-	30	0.745
-	40	0.847
-	50	0.847
-	60	0.745
-	70	0.558
-	80	0.294
-	90	0.000
-	100	-0.236
-	110	-0.431
-	120	-0.575
-	130	-0.692
-	140	-0.792
-	150	-0.867
-	160	-0.865
-	170	-0.642
-	180	0.000
+-180	0.000
+-170	0.321
+-160	0.433
+-150	0.434
+-140	0.396
+-130	0.346
+-120	0.288
+-110	0.216
+-100	0.118
+-90	0.000
+-80	-0.147
+-70	-0.279
+-60	-0.373
+-50	-0.424
+-40	-0.424
+-30	-0.373
+-25	-0.398
+-20	-0.475
+-15	-0.515
+-10	-0.355
+-5	-0.178
+0	0.000
+5	0.178
+10	0.355
+15	0.515
+20	0.475
+25	0.398
+30	0.373
+40	0.424
+50	0.424
+60	0.373
+70	0.279
+80	0.147
+90	0.000
+100	-0.118
+110	-0.216
+120	-0.288
+130	-0.346
+140	-0.396
+150	-0.434
+160	-0.433
+170	-0.321
+180	0.000
+
         </LiftCurve>
 
         <DragCurve >
