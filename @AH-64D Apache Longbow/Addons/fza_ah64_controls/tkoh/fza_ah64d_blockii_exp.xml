@@ -467,13 +467,13 @@
 
       <PitchRateController printDebugInfo="false">
         <PID P="0.06"  I="0.01" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxPitchRate maxPitchRate="60" />
+        <MaxPitchRate maxPitchRate="45" />
         <InputMapping nonlinearity="1" />
       </PitchRateController>
 
       <RollRateController printDebugInfo="false">
         <PID P="0.01"  I="0.04" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxRollRate maxRollRate="120" />
+        <MaxRollRate maxRollRate="60" />
         <InputMapping nonlinearity="1" />
       </RollRateController>
 
