@@ -467,13 +467,13 @@
 
       <PitchRateController printDebugInfo="false">
         <PID P="0.06"  I="0.01" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxPitchRate maxPitchRate="35" />
+        <MaxPitchRate maxPitchRate="60" />
         <InputMapping nonlinearity="1" />
       </PitchRateController>
 
       <RollRateController printDebugInfo="false">
         <PID P="0.01"  I="0.04" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxRollRate maxRollRate="70" />
+        <MaxRollRate maxRollRate="120" />
         <InputMapping nonlinearity="1" />
       </RollRateController>
 
@@ -482,7 +482,7 @@
 	<CSComponent type="FCSRotationDamper">
   <YawController P="1.0" D="0.01"/>
   <PitchController P="1.0" D="0.001"/>
-  <RollController P="1.0" D="0.001"/>
+  <RollController P="0.5" D="0.001"/>
  </CSComponent>
 
     <CSComponent type="GenericControlSystem">
@@ -627,7 +627,7 @@
       <Geometry>
         <Position x="0" y="0.353" z="1.42"/>
         <Tilt lateralTilt="0.0" longitudinalTilt="0.0"/>
-        <Blades chord="0.5334" rootCutout="0.9" count="4" flappingHingeHigherLimit="25" flappingHingeLowerLimit="-6" hingeOffset=".255" radius="7.3152"/>
+        <Blades chord="0.5334" rootCutout="0.9" count="4" flappingHingeHigherLimit="25" flappingHingeLowerLimit="-6" hingeOffset=".32385" radius="7.3152"/>
         <Rotation clockwise="false"/>
       </Geometry>
       
@@ -870,7 +870,7 @@
 
         </VortexRingState>
             
-        <DesignRPM rpm="315"/>
+        <DesignRPM rpm="292"/>
         <Blades twist="-9" tipLossFactor="0.03"> <!--3.5 degrees of difference due to linearisation: add it to collective -->
            <LiftCoefficient>
                       0           0.4           1.0           1.1          1.2          1.5           20
