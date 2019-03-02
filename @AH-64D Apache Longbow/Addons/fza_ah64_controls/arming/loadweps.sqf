@@ -2370,7 +2370,6 @@ fza_ah64_gunheat = 0;
 if(typeof _heli == "fza_ah64d_b2e") then {_heliweight = _heliweight + 150;};
 _fuelweight = 1152 * (fza_ah64_fuelsave);
 fza_ah64_grossweight = _heliweight + _fuelweight;
-_heli setCustomWeightRTD _heliweight;
 
 uiSleep 0.5;
 
