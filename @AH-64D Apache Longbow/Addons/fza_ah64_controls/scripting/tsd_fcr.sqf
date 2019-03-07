@@ -73,9 +73,11 @@ if((getpos _i select 2 > 10) || ((_heli distance _i) > 8000) || (_thetafcr > 70 
 
 //////////////END SORT///////////
 
-//driver FCR/TSD displays
+//DRIVER AND FCR/TSD DISPLAYS
 if((driver _heli == player || gunner _heli == player) && (fza_ah64_pr_mpd == "tsd" || fza_ah64_pl_mpd == "tsd" || fza_ah64_pr_mpd == "fcr")) then
 {
+_heli setobjecttexture [270,"\fza_ah64_US\tex\mpd\ownship_ca.paa"];
+_heli setobjecttexture [1076,"\fza_ah64_US\tex\mpd\ownship_ca.paa"];
 _mapsizefactor = 0.8/fza_ah64_mapsizearea;
 _pfzsel = [fza_ah64_pfz_count,"\fza_ah64_us\tex\CHAR\G"] call fza_ah64_digit;
 _tfilter = "\fza_ah64_us\tex\mpd\all.paa";
@@ -139,6 +141,7 @@ _wndformat2 = "\fza_ah64_us\tex\CHAR\G" + (format ["%1",_windte]) + "_ca.paa";
 _wndformat3 = "\fza_ah64_us\tex\CHAR\G" + (format ["%1",_windsi]) + "_ca.paa";
 _wndsformat1 = "\fza_ah64_us\tex\CHAR\G" + (format ["%1",_windste]) + "_ca.paa";
 _wndsformat2 = "\fza_ah64_us\tex\CHAR\G" + (format ["%1",_windssi]) + "_ca.paa";
+
 if(fza_ah64_pr_mpd == "tsd") then
 {
 _heli setobjecttexture [401,_pfzsel];
@@ -166,6 +169,7 @@ _heli setobjecttexture [405,_wndformat2];
 _heli setobjecttexture [406,_wndformat1];
 _heli setobjecttexture [407,_wndsformat2];
 _heli setobjecttexture [408,_wndsformat1];
+
 if(fza_ah64_tsdmode == "atk") then
 {
 _heli setobjecttexture [1071,"\fza_ah64_us\tex\mpd\tsd.paa"];
@@ -190,7 +194,8 @@ _heli animate ["mpd_pr_mmap_s1",_mapscale];
 _heli animate ["mpd_pr_mmap_s2",_mapscale];
 _heli animate ["mpd_pr_mmap_s3",_mapscale];
 };
-//cpg//
+
+//CPG
 if(player == gunner _heli) then
 {
 _heli setobjecttexture [1108,fza_ah64_currentmap];
@@ -206,6 +211,7 @@ _heli setobjecttexture [1108,""];
 _heli setobjecttexture [1110,""];
 _heli setobjecttexture [1069,""];
 };
+
 if(player == driver _heli) then
 {
 _heli animate ["mpd_pl_obj1_v",0.25];
@@ -218,8 +224,6 @@ _heli animate ["mpd_gr_obj1_v",0.25];
 _heli animate ["mpd_gr_obj1_h",0.5];
 _heli animate ["mpd_gr_obj1_z",0.005];
 };
-_heli setobjecttexture [270,"\fza_ah64_US\tex\mpd\ownship_ca.paa"];
-_heli setobjecttexture [1076,"\fza_ah64_US\tex\mpd\ownship_ca.paa"];
 {
 if(_targnum > 301) exitwith {};
 if(_targnum <= 301) then
@@ -375,8 +379,6 @@ _heli animate ["mpd_gr_obj1_v",0.25];
 _heli animate ["mpd_gr_obj1_h",0.5];
 _heli animate ["mpd_gr_obj1_z",0.005];
 };
-_heli setobjecttexture [270,"\fza_ah64_US\tex\mpd\ownship_ca.paa"];
-_heli setobjecttexture [1076,"\fza_ah64_US\tex\mpd\ownship_ca.paa"];
 {
 if(_targnum < 302) then
 {

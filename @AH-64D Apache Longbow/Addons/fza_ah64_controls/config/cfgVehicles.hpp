@@ -6,10 +6,7 @@ class CfgVehicles
 		class NewTurret;
 	};
 	class Air : AllVehicles {};
-	class Helicopter_Base_F : Air
-	{
-		//class RotorLibHelicopterProperties;
-	};
+	class Helicopter_Base_F : Air {};
 	class fza_ah64base: Helicopter_Base_F
 	{
     class itc_air {
@@ -53,9 +50,8 @@ class CfgVehicles
 		usePreciseGetInAction = 1;
 		preciseGetInOut = 1;
 		getInRadius = 1.500000;
-		//getInAction = "pilot_Heli_Light_02_Enter"; //pilot_Heli_Light_03_Enter
 		getInAction = "pilot_Heli_Light_02_Enter";
-		getOutAction = "GetOutHigh"; //pilot_Heli_Light_03_Exit
+		getOutAction = "GetOutHigh"; 
 		cargoGetInAction[] = {"GetInHigh","GetInHigh"};
 		cargoGetOutAction[] = {"GetOutHigh","GetOutHigh"};
 		//TKOH END//
@@ -95,8 +91,8 @@ class CfgVehicles
 		soundDammage[] = {"\fza_ah64_US\audio\helibasiccrash.ogg", 3.162278, 1, 10};
 		soundgetin[] = {"A3\Sounds_F\vehicles\air\noises\heli_get_in2",1,1,1};
 		soundgetout[] = {"A3\Sounds_F\vehicles\air\noises\heli_get_out2",1,1,1};
-		soundEngineOffExt[] = {"fza_ah64_us\audio\Ext_Off.ogg",2,0.6,600};
-		soundEngineOffInt[] = {"fza_ah64_us\audio\Int_Off.ogg",1,0.8};
+		soundEngineOffExt[] = {"fza_ah64_us\audio\Ext_Off.ogg",1,0.6,600};
+		soundEngineOffInt[] = {"fza_ah64_us\audio\Int_Off.ogg",1,0.6};
 		soundEngineOnExt[] = {"fza_ah64_us\audio\Ext_Start.ogg",1,0.6,600};
 		soundEngineOnInt[] = {"fza_ah64_us\audio\Int_Start.ogg",0.33,0.6};
 		rotorDamageInt[] = {"\fza_ah64_US\audio\heli_damage_rotor_int.ogg", 1.000000, 1.000000};
@@ -112,26 +108,9 @@ class CfgVehicles
 		landingSoundOut1[] = {"A3\Sounds_F\vehicles\air\noises\landing_skids_ext1", 1.778279, 1.000000, 10};
 		landingSoundOut[] = {"landingSoundOut0", 0.500000, "landingSoundOut1", 0.500000};
 		soundenviron[] = {"", 1, 1};
-		author="Franze, Nodunit, Sacha 'Voodoo' Oropeza & Community";
-		/*class RotorLibHelicopterProperties //Keplager's RTD
+		author="Franze, Nodunit, Sacha 'Voodoo' Oropeza, Zeitsev & Community";
+		class RotorLibHelicopterProperties
 		{
-            autoHoverCorrection[]={3,2.45,0};
-            defaultCollective=0.625;
-            retreatBladeStallWarningSpeed=85.556;
-            maxTorque=1600;
-            stressDamagePerSec=0.0033333332;
-            maxHorizontalStabilizerLeftStress=10000;
-            maxHorizontalStabilizerRightStress=10000;
-            maxVerticalStabilizerStress=10000;
-            horizontalWingsAngleCollMin=0;
-            horizontalWingsAngleCollMax=0;
-            maxMainRotorStress=200000;
-            maxTailRotorStress=60000;
-			RTDconfig = "fza_ah64_controls\tkoh\RTD_AH64.xml";
-		};*/
-		class RotorLibHelicopterProperties //Voodoo's RTD
-		{
-			//autoHoverCorrection[] = {-0.4,2.75,0};
 			autoHoverCorrection[] = {1.39,2.96,0};  // p - more forward, r - more right
 			defaultCollective = 0.675;
 			horizontalWingsAngleCollMax = 0;
@@ -146,24 +125,6 @@ class CfgVehicles
 			retreatBladeStallWarningSpeed = 92.778;
 			RTDconfig = "fza_ah64_controls\tkoh\fza_ah64d_blockii_exp.xml";
 		};
-		/*class RotorLibHelicopterProperties //Cleaned Out Franze's RTD + Voodoo's fixed Hover
-		{
-			//autoHoverCorrection[] = {-0.1,5.3,0};
-			autoHoverCorrection[] = {-0.4,2.75,0};
-			defaultCollective = 0.675;
-			horizontalWingsAngleCollMax = 0;
-			horizontalWingsAngleCollMin = 0;
-			maxHorizontalStabilizerLeftStress = 100000;
-			maxHorizontalStabilizerRightStress = 100000;
-			maxMainRotorStress = 300000;
-			maxTailRotorStress = 25000;
-			maxTorque = 5260;
-			stressDamagePerSec	= 0.0033333332666667;
-			maxVerticalStabilizerStress = 100000;
-			retreatBladeStallWarningSpeed = 101.346;
-			rtd_center = "rtd_center";
-			RTDconfig = "fza_ah64_controls\tkoh\fza_ah64d_blockii.xml";
-		};*/
 		class RenderTargets
 		{
 				/*
@@ -315,13 +276,13 @@ class CfgVehicles
 		{
 				class EngineExt
 				{
-					sound[] = {"\fza_ah64_US\audio\ah64_engine1.ogg", 1, 1.000000, 600};
+					sound[] = {"\fza_ah64_US\audio\Engine_Far_bak.ogg", 1, 1.000000, 800};
 					frequency = "rotorSpeed";
 					volume = "camPos*((rotorSpeed-0.72)*4)";
 				};
 				class RotorExt
 				{
-					sound[] = {"\fza_ah64_US\audio\ah64_rotor_ext1.ogg", 1, 1.000000, 800};
+					sound[] = {"\fza_ah64_US\audio\ah64_rotor_ext2.ogg", 1, 1.000000, 800};
 					frequency = "rotorSpeed * (1 - rotorThrust/5)";
 					volume = "camPos*(0 max (rotorSpeed-0.1))*(1 + rotorThrust)";
 				};
@@ -352,13 +313,13 @@ class CfgVehicles
 				};
 				class Distance
 				{
-					sound[]  = {"\fza_ah64_US\audio\Engine_Far.ogg", 1, 1, 1500};
+					sound[]  = {"\fza_ah64_US\audio\Engine_Far.ogg", 3, 1, 3000};
 					frequency = "rotorSpeed";
 					volume = "2 * camPos * (0 max (rotorSpeed-0.4))";
 				};
 				class FarDistance
 				{
-					sound[]  = {"\fza_ah64_US\audio\Rotor_Far.ogg", 1, 1, 3000};
+					sound[]  = {"\fza_ah64_US\audio\Rotor_Far.ogg", 3, 1, 3000};
 					frequency = "rotorSpeed";
 					volume = "2 * camPos * (0 max (rotorSpeed-0.4))";
 				};
@@ -515,13 +476,13 @@ class CfgVehicles
 			{
 				class EngineExt
 				{
-					sound[] = {"\fza_ah64_US\audio\ah64_engine1.ogg", 1, 1.000000, 600};
+					sound[] = {"\fza_ah64_US\audio\Engine_Far_bak.ogg", 1, 1.000000, 800};
 					frequency = "rotorSpeed";
 					volume = "camPos*((rotorSpeed-0.72)*4)";
 				};
 				class RotorExt
 				{
-					sound[] = {"\fza_ah64_US\audio\ah64_rotor_ext1.ogg", 1, 1.000000, 800};
+					sound[] = {"\fza_ah64_US\audio\ah64_rotor_ext2.ogg", 1, 1.000000, 800};
 					frequency = "rotorSpeed * (1 - rotorThrust/5)";
 					volume = "camPos*(0 max (rotorSpeed-0.1))*(1 + rotorThrust)";
 				};
@@ -552,13 +513,13 @@ class CfgVehicles
 				};
 				class Distance
 				{
-					sound[]  = {"\fza_ah64_US\audio\Engine_Far.ogg", 1, 1, 1500};
+					sound[]  = {"\fza_ah64_US\audio\Engine_Far.ogg", 3, 1, 3000};
 					frequency = "rotorSpeed";
 					volume = "2 * camPos * (0 max (rotorSpeed-0.4))";
 				};
 				class FarDistance
 				{
-					sound[]  = {"\fza_ah64_US\audio\Rotor_Far.ogg", 1, 1, 3000};
+					sound[]  = {"\fza_ah64_US\audio\Rotor_Far.ogg", 3, 1, 3000};
 					frequency = "rotorSpeed";
 					volume = "2 * camPos * (0 max (rotorSpeed-0.4))";
 				};
@@ -1544,8 +1505,8 @@ class CfgVehicles
 	class fza_ah64d_b2e: fza_ah64base
 	{
 		side=1;
-		scope=2;
-		author="Franze, Nodunit, Sacha 'Voodoo' Oropeza & Community";
+		scope=1; //MASKED FROM EDITOR
+		author="Franze, Nodunit, Sacha 'Voodoo' Oropeza, Zeitsev & Community";
 		displayName="AH-64D Apache Longbow";
 		model="\fza_ah64_US\fza_ah64d_b2.p3d";
 		ejectDeadCargo=0;
@@ -4771,7 +4732,7 @@ initPhase=0;
 	{
 		side=1;
 		scope=2; //UNMASKED FROM EDITOR
-		author="Franze, Nodunit, Sacha 'Voodoo' Oropeza & Community";
+		author="Franze, Nodunit, Sacha 'Voodoo' Oropeza, Zeitsev & Community";
 		displayName="AH-64D Apache";
 		hiddenselections[]=
 		{

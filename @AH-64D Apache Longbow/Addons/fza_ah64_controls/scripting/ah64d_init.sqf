@@ -1,26 +1,11 @@
 ///MASTER INIT FOR AH-64D///
 _heli = _this select 0;
-//_heli removeweapon "fza_m230";
-//_heli addweapon "fza_m230";
 _heli selectweapon "fza_ma_safe";
-
-// AH-64D AIRBORNE DOOR FIX
-/* connectionFirstTime = true;
-onPlayerConnected {
-    if (connectionFirstTime == true) {
-        _heli animate ["pdoor",1];
-        _heli animate ["gdoor",1];
-        connectionFirstTime = false;
-    };
-}; */
 
 // ENABLE/DISABLE CPG CONTROLS
 if (isCopilotEnabled _heli) then {
     _heli enableCopilot true;
 };
-
-//REMOVE ACTIONS MENU
-//if (player == driver _heli || player == gunner _heli)  then {removeAllActions _heli};
 
 if(isNil "fza_ah64_skinlist") then {fza_ah64_skinlist = [];};
 
@@ -184,10 +169,8 @@ if (isNil "fza_ah64_fx_init") then
 	fza_ah64_pfz8 = [];
 	fza_ah64_curwpnum = 0;
 	fza_ah64_curwp = [0,0,0];
-
 	fza_ah64_waypointdata = [getpos _heli];
-
-	//fza_ah64_rangesetting = 0.0002; //5km
+	fza_ah64_wpmarkers = [];
 	fza_ah64_rangesetting = 0.001; //1km
 	fza_ah64_fcrstate = 0;
 	fza_ah64_fcrlist = [];
@@ -226,7 +209,7 @@ _engtracker = [player] execvm "\fza_ah64_controls\scripting\page_eng.sqf";
 _asetracker = [player] execvm "\fza_ah64_controls\scripting\page_ase.sqf";
 _ufdtracker = [player] execvm "\fza_ah64_controls\scripting\ufd.sqf";
 //_targettracker1 = [_heli] execvm "\fza_ah64_controls\scripting\targeting.sqf";
-_targetscanner = [player] execvm "\fza_ah64_controls\scripting\fcr_longbow.sqf";
+//_targetscanner = [player] execvm "\fza_ah64_controls\scripting\fcr_longbow.sqf";
 _tsdfcr = [player] execvm "\fza_ah64_controls\scripting\tsd_fcr.sqf";
 ///////////////////////////////////////////
 
@@ -237,7 +220,7 @@ _enginetracker = [_heli] execvm "\fza_ah64_controls\scripting\func_engines.sqf";
 _aiturrets = [_heli] execvm "\fza_ah64_controls\scripting\turrets.sqf";
 _blades = [_heli] execvm "\fza_ah64_controls\scripting\bladerot.sqf";
 //_arming = [_heli] execvm "\fza_ah64_controls\arming\arming.sqf";
-if(!(isMultiplayer)) then {_savetracker = player execvm "\fza_ah64_controls\scripting\savetracker.sqf";};
+//if(!(isMultiplayer)) then {_savetracker = player execvm "\fza_ah64_controls\scripting\savetracker.sqf";};
 if(isnil "fza_ah64_tiron") then {fza_ah64_tiron = false;};
 
 if(typeOf _heli == "fza_ah64d_b2e") then

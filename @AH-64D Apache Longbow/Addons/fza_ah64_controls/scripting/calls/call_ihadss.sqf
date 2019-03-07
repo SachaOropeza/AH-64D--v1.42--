@@ -627,7 +627,7 @@ _weaponstate = format ["%1",_heli ammo (currentweapon _heli)];
 };
 
 
-if((currentweapon _heli == "fza_ma_safe") && player == driver _heli) then
+if(currentweapon _heli == "fza_ma_safe") then
 {
 _weapon = "";
 _weaponstate = "";

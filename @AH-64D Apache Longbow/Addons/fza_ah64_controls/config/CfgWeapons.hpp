@@ -77,8 +77,8 @@ class fza_m230: CannonCore
 		};
 			class StandardSound 
 			{
-				begin1[] = {"\fza_ah64_us\audio\M230_Dist_burst10.ogg", 3, 1, 750};
-				end1[] = {"\fza_ah64_us\audio\M230_Dist2.ogg", 5, 1, 1500};
+				begin1[] = {"\fza_ah64_us\audio\M230_Dist_burst10.ogg", 3, 1, 900};
+				end1[] = {"\fza_ah64_us\audio\M230_Dist2.ogg", 3, 1, 900};
 				soundBegin[] = {"begin1",1};
 				soundEnd[] = {"end1",1};
 				weaponSoundEffect = "DefaultRifle";
@@ -97,7 +97,7 @@ class fza_m230: CannonCore
 		multiplier=1;
 		reloadTime=0.096;
 		dispersion = 0.005000;
-		initspeed=805;
+		initspeed=1620;
 		ballisticscomputer = 1;
 		weaponLockSystem = "8+4";
 		weaponLockDelay = 0;
@@ -113,14 +113,14 @@ class fza_m230: CannonCore
 		autofire= true;
 		useAction = false;
 		useActionTitle = "";
-		aiRateOfFire=0.096;
+		aiRateOfFire = 5;
 		aiRateOfFireDistance = 500;
 		minRange = 100;
 		minRangeProbab = 0.500000;
-		midRange = 1000;
-		midRangeProbab = 0.780000;
-		maxRange = 2000;
-		maxRangeProbab = 0.200000;
+		midRange = 1500;
+		midRangeProbab = 0.200000;
+		maxRange = 3000;
+		maxRangeProbab = 0.100000;
 	};
 
 	class fza_burstlimiter: fza_m230
@@ -137,7 +137,7 @@ class fza_m230: CannonCore
 	{
 		class StandardSound
         {
-			weaponfire[] = {"\fza_ah64_us\audio\AGM114_Mid.ogg", 40,1,40};
+			weaponfire[] = {"\fza_ah64_us\audio\AGM114_Mid.ogg",30,1,50};
 			soundBegin[] = {"weaponfire",1};
 			weaponsoundeffect = "DefaultRifle";
 		};
@@ -146,7 +146,6 @@ class fza_m230: CannonCore
 		displayNameMagazine="AGM-114";
 		shortNameMagazine="AGM-114";
 		magazines[]={fza_agm114k_16};
-		//weaponlocksystem = 0;
 		weaponLockDelay = 0;
 		weaponLockSystem = 4;
 		lockedtargetsound[] = {"", 1, 1};
@@ -156,8 +155,7 @@ class fza_m230: CannonCore
 		cursoraim = "";
 		cursorAimOn = "";
 		cursorsize = 1;
-		sounds[] = {StandardSound};
-		soundfly[] = {"A3\Sounds_F\weapons\Rockets\rocket_fly_2",1, 1.500000, 700};
+		sounds[] = {"StandardSound"};
 		airateoffire = 5;
 		airateoffiredistance = 4000;
 		cmimmunity = 0.8;
@@ -312,8 +310,8 @@ class fza_m230: CannonCore
 		{
 			class StandardSound
             {
-				weaponfire[] = {"\fza_ah64_us\audio\M261_Dist.ogg", 3,1,800};
-				weaponfire2[] = {"\fza_ah64_us\audio\M261_Dist2.ogg", 3,1,800};
+				weaponfire[] = {"\fza_ah64_us\audio\M261_Dist.ogg", 8,1,1000};
+				weaponfire2[] = {"\fza_ah64_us\audio\M261_Dist2.ogg", 8,1,1000};
 				soundBegin[] = {"weaponfire",0.50,"weaponfire2",0.50};
 				weaponsoundeffect = "DefaultRifle";
 			};
@@ -321,7 +319,7 @@ class fza_m230: CannonCore
 			burst=1;
 			displayName="M261";
 			dispersion=0.0;
-			sounds[] = {StandardSound};
+			sounds[] = {"StandardSound"};
 			soundburst= true;
 			soundContinuous= 0;
 			reloadTime=0.05;
@@ -332,11 +330,11 @@ class fza_m230: CannonCore
 			useActionTitle = "";
 			showToPlayer = 1;
 			maxrange = 4000;
-			maxrangeprobab = 0.1;
+			maxrangeprobab = 0.090000;
 			midrange = 2000;
-			midrangeprobab = 0.9;
+			midrangeprobab = 0.090000;
 			minrange = 200;
-			minrangeprobab = 0.6;
+			minrangeprobab = 0.090000;
 			cursor = "EmptyCursor";
 			cursoraim = "EmptyCursor";
 			cursorAimOn = "";

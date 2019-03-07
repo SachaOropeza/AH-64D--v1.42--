@@ -2,6 +2,21 @@
 Originally based on Franze & Nodunit AH-64D - Project by Sacha 'Voodoo' Oropeza & Community.
 
 # CHANGELOG NOTES:
+*07/03/2019*
+- Removed NAV fixes on the A3 map, now TSD only.
+- Fixed waypoint script error on the editor.
+- Tweaked 30mm rounds max speed.
+
+*02/03/2019*
+- Fixed aircraft weight after rearming - by Zeitsev.
+- Removed fza_ah64d_b2e for further FCR fixes, performances and code improvements.
+- Minor AFM tweaking - by Zeitsev.
+
+*21/02/2019*
+- AFM update - by Keplager and BradMick.
+- Couple sounds tweaking.
+- Possible M230 performance fix.
+
 *13/01/2019*
 - Minor sound tweaks.
 - Minor change to WPN page on LST & LRFD channels.

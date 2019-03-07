@@ -1177,15 +1177,15 @@ fza_ah64_l1clicked = 1;
 
 if(inputaction "User20" > 0.5 && fza_ah64_l1clicked == 0 && _btnapu distance [fza_ah64_mousehorpos,fza_ah64_mousevertpos] < 0.03 && _heli animationphase "plt_batt" > 0.5) then
 {
-if(_heli animationphase "plt_apu" < 1) then 
-{_heli animate ["plt_apu",1]; 
+if(_heli animationphase "plt_apu" < 1) then
+{_heli animate ["plt_apu",1];
 ["fza_ah64_apubutton",0.1] execvm "\fza_ah64_controls\scripting\damage\dam_bt_audio.sqf";
-//_heli say3D ["fza_ah64_apustart_3D",200,1]; 
+//_heli say3D ["fza_ah64_apustart_3D",200,1];
 [_heli,["fza_ah64_apustart_3D", 200]] remoteExec ["say3d"];
-[_heli] execvm "\fza_ah64_controls\scripting\calls\call_apuloop.sqf"; 
+[_heli] execvm "\fza_ah64_controls\scripting\calls\call_apuloop.sqf";
 _heli animate ["tads_stow",0];
 } else {
-_heli animate ["plt_apu",0]; 
+_heli animate ["plt_apu",0];
 ["fza_ah64_apubutton",0.1] execvm "\fza_ah64_controls\scripting\damage\dam_bt_audio.sqf";
 [_heli,["fza_ah64_apustop_3D", 200]] remoteExec ["say3d"];
 };
@@ -1395,6 +1395,9 @@ if(inputaction "User20" > 0.5 && fza_ah64_l1clicked == 0 && _stowmonocle distanc
 {
 [_heli] exec "\fza_ah64_controls\scripting\monocle.sqs";
 [_heli] execVM "\fza_ah64_controls\scripting\calls\call_monocle.sqf";
+((uiNameSpace getVariable "fza_ah64_click_monocle")displayCtrl 501) ctrlSetText "\fza_ah64_US\tex\HDU\monocle_solid.paa";
+((uiNameSpace getVariable "fza_ah64_click_monocle")displayCtrl 501) ctrlSetTextColor [1, 1, 1, 1]; //HIDING MONOCLE WHEN GET IN
+((uiNameSpace getVariable "fza_ah64_click_monocle")displayCtrl 501) ctrlCommit 0;
 fza_ah64_l1clicked = 1;
 _clicksound = ["fza_ah64_monoclebox",0.1];
 };

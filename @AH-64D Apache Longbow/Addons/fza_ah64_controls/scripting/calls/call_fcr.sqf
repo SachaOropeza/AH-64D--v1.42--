@@ -14,6 +14,9 @@ if(isengineon _heli) then
 {
 	if(fza_ah64_agmode == 1) then {_maxalt = 100;};
 	if(fza_ah64_agmode == 0 || fza_ah64_agmode > 1) then {_maxalt = 2;};
+
+//REMOVED FOR PERFORMANCES	
+/*
 	if(fza_ah64_fcrstate == 1 && (typeOf _heli == "fza_ah64d_b2e") && !("fza_ah64_fcr_fail" in (_heli magazinesturret [-1]))) then
 	{
 		//add targets to master list
@@ -48,6 +51,7 @@ if(isengineon _heli) then
 		{if(!(_x in fza_ah64_targetlist)) then {fza_ah64_targetlist = fza_ah64_targetlist + [_x]; _heli reveal _x;};} foreach _targets;
 		{if(!(_x in fza_ah64_fcrlist)) then {fza_ah64_fcrlist = fza_ah64_fcrlist + [_x];};} foreach _targets;
 	};
+*/
 	///////TADS/VISUAL TARGETS//////
 	_targlist = _heli neartargets 6000;
 	{
