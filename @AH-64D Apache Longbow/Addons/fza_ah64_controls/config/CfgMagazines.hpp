@@ -1,8 +1,10 @@
 class CfgMagazines
 {
-	class Default {};
-	class CA_Magazine: Default {};
-	class VehicleMagazine: CA_Magazine {};
+	class CA_Magazine;
+	class VehicleMagazine;
+	class 24Rnd_PG_missiles;
+	class 24Rnd_missiles;
+	
 	class 60Rnd_CMFlareMagazine: CA_Magazine
 	{
 		author = "$STR_A3_Bohemia_Interactive";
@@ -12,9 +14,18 @@ class CfgMagazines
 	};
 	class fza_safe: VehicleMagazine
 	{
-		scope=2;
+		scope = 1;
 		displayName="SAFE";
-		descriptionShort="SAFE";
+		ammo="fza_master";
+		count=1;
+		initSpeed=0;
+		tracersEvery=0;
+		nameSound="";
+	};
+	class fza_burstlimit: VehicleMagazine
+	{
+		scope = 1;
+		displayName="SAFE";
 		ammo="fza_master";
 		count=1;
 		initSpeed=0;
@@ -50,7 +61,7 @@ class CfgMagazines
 		initSpeed = 150;
 		sound[] = {"\ca\Weapons\Data\Sound\TOW_2",3.162278,1};
 		reloadSound[] = {"\ca\Weapons\Data\Sound\missload",0.000316,1};
-		weight = 60;
+		weight = 60;		
 	};
 	class fza_agm114l_16: VehicleMagazine
 	{
@@ -62,6 +73,10 @@ class CfgMagazines
 		sound[] = {"\ca\Weapons\Data\Sound\TOW_2",3.162278,1};
 		reloadSound[] = {"\ca\Weapons\Data\Sound\missload",0.000316,1};
 		weight = 974.497848;
+		
+		hardpoints[]	= {"LAU_7"};		
+		pylonWeapon		= "fza_agm114l_16";
+		
 	};
 	class fza_agm114l_23_8: fza_agm114l_16
 	{

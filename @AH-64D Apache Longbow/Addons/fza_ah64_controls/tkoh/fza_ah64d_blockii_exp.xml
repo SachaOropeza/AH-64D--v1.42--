@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <GenHeli600 version="1.0">
 
-  <Mass mass="6087.20"/>
+  <Mass mass="5460"/>
 	<MomentsOfInertia Ixx="27449" Iyy="5316" Izz="27665" Iyz="3166"/>
 	<CenterOfGravity x="0.0" y="0.108" z="-0.272" />
 
@@ -139,7 +139,7 @@
 		180	0.006
 	</SideForceDueToSideslip>
 
-	<LiftDueToAoA scale="2.0"  >
+	<LiftDueToAoA scale="1"  >
 		-180	0.000
 		-170	1.096
 		-160	1.998
@@ -185,7 +185,7 @@
 		180	0.000
 	</LiftDueToAoA>
 
-	<DragDueToAoA scale="1.0"  >
+	<DragDueToAoA scale="1.5"  >
 		-180	1.995
 		-170	2.291
 		-160	3.142
@@ -423,14 +423,14 @@
       <!--	Note: Too little inertia causes problems if the drive train is damaged. W/o loads. engine controller is not
             		able to operate correctly. -->
       <General inertia="8.14" />
-      <Performance emergencyPowerHP="1902" maxTorque="1580" rotationResistance="0.000000"/>
+      <Performance emergencyPowerHP="1940" maxTorque="626" rotationResistance="0.000000"/>
       <ControllerParams P="1.0" I="1.5" D="0.1" offset="150" targetRPM="21109" />
 		</Engine>
 
     <Engine type="ConstantRPMEngine">
       <DebugInfo printDebugInfo="false" />
 		 	<General inertia="8.14" />
-      <Performance emergencyPowerHP="1902" maxTorque="1580" rotationResistance="0.000000"/>
+      <Performance emergencyPowerHP="1940" maxTorque="626" rotationResistance="0.000000"/>
       <ControllerParams P="1.0" I="1.5" D="0.1" offset="150" targetRPM="21109" />
 		</Engine>
 
@@ -438,9 +438,9 @@
 
   <DriveTrains>
     <DriveTrain type="GenericDriveTrain">
-      <TorqueLimits emergency="3200"/>
+      <TorqueLimits emergency="1252"/>
       <GearBox gearRatios="1" reverseGearRatio="1"/>
-      <Clutch isFreewheeling="true" maxClutchTorque="2860"/>
+      <Clutch isFreewheeling="true" maxClutchTorque="1108"/>
       <Engine index="0"/>
       <Engine index="1"/>
       <Load gearRatio="72.291" name="MainRotor"/>
@@ -459,7 +459,7 @@
     <CSComponent type="FCSHelicopterAutoTrim100" >
       <YawRateAndSideslipController printDebugInfo="false">
         <YawRatePID P="0.04"  I="0.01" D="0.0" offset="0.0" integralMin="-25" integralMax="25" />
-        <SideslipPID P="0.06"  I="0.01" D="0.007" offset="0.0" integralMin="-25" integralMax="25" />
+        <SideslipPID P="0.02"  I="0.01" D="0.007" offset="0.0" integralMin="-25" integralMax="25" />
         <Transition speedLow="15" speedHigh="40" />
         <Maximums maxYawRate="60" maxSideslip="60" />
         <InputMapping nonlinearity="1.5" />
@@ -467,13 +467,13 @@
 
       <PitchRateController printDebugInfo="false">
         <PID P="0.06"  I="0.01" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxPitchRate maxPitchRate="45" />
+        <MaxPitchRate maxPitchRate="360" />
         <InputMapping nonlinearity="1" />
       </PitchRateController>
 
       <RollRateController printDebugInfo="false">
         <PID P="0.01"  I="0.04" D="0.001" offset="0.0" integralMin="-25" integralMax="25" />
-        <MaxRollRate maxRollRate="60" />
+        <MaxRollRate maxRollRate="360" />
         <InputMapping nonlinearity="1" />
       </RollRateController>
 
@@ -481,8 +481,8 @@
 
 	<CSComponent type="FCSRotationDamper">
   <YawController P="1.0" D="0.01"/>
-  <PitchController P="1.0" D="0.001"/>
-  <RollController P="0.5" D="0.001"/>
+  <PitchController P="0.2" D="0.001"/>
+  <RollController P="0.2" D="0.001"/>
  </CSComponent>
 
     <CSComponent type="GenericControlSystem">
@@ -525,54 +525,29 @@
 		<Variable alias="RollSAS" dataType="REAL" name="RollSAS"/>
 		<Variable alias="PSAS" dataType="REAL" name="PSAS"/>
 
-		<Variable alias="a" dataType="REAL" name="a"/>
-		<Variable alias="b" dataType="REAL" name="b"/>
-		<Variable alias="c" dataType="REAL" name="c"/>
-
-		<Variable alias="v1" dataType="REAL" name="v1"/>
-		<Variable alias="v2" dataType="REAL" name="v2"/>
-		<Variable alias="v3" dataType="REAL" name="v3"/>
-		<Variable alias="v4" dataType="REAL" name="v4"/>
-		<Variable alias="v5" dataType="REAL" name="v5"/>
-
-		<Variable alias="collMod1" dataType="REAL" name="collMod1"/>
-		<Variable alias="collMod2" dataType="REAL" name="collMod2"/>
-
-		<Variable alias="stabConst1" dataType="REAL" name="stabConst1"/>
-		<Variable alias="stabConst2" dataType="REAL" name="stabConst2"/>
-
-		<Variable alias="mod" dataType="REAL" name="mod"/>
         <!-- <Variable alias="myVar" dataType="REAL" name="myVar"/> -->
       </Variables>
-	   <!--
-	      A1m = linearInterp(-12.5, 20, (latCyclic * 1.0) * 0.5),
-          A1m = latCyclic * 10,
-          A1m = clamp( A1m , -12.5 , 20),
-
-		  B1m = linearInterp(-13, 18, (lonCyclic * 1.0) * 0.5),
-          B1m = lonCyclic * 20,
-          B1m = clamp( B1m , -13 , 18 ),
-		  -->
 
       <MathExpression>
         <Expression>
 
-		  FPSY =  0,
-		  FPSP =  0,
-		  FPSR =  0,
+		  FPSY =  clamp(Cms * (Vms/30), -0.2, 0.2),
+		  FPSP =  clamp((pitchRateRad/3) * (Vms/60), -0.2, 0.2),
+		  FPSR =  clamp(rollRateRad * 0.02 * (Vms/60), -0.2, 0.2),
 
-		  PSAS = 0,
-		  RollSAS = 0,
-		  YawSAS = 0,
+		  PSAS = clamp(pitchRateRad * 0.15, -0.1 , 0.1 ),
+		  RollSAS = clamp(rollRateRad * 0.075, -0.1 , 0.1 ),
+		  YawSAS = clamp(yawRateRad * 3, -0.1 , 0.1 ),
 
           latCyclic = latCyclic - RollSAS - collective * 0.2 - FPSR + pedals * 0.15,
-		  lonCyclic = lonCyclic + PSAS - 0.1 + collective * 0.60 - pedals * 0.06 + FPSP,
+		  lonCyclic = lonCyclic/clamp(Vms/50, 1, 999) + PSAS - 0.1 + collective * 0.60 - pedals * 0.06 + FPSP,
 		  pedals = pedals + 0.25 + YawSAS - collective * 0.60 + FPSY,
 
-		  A1m = latCyclic * 10,
+
+          A1m = latCyclic * 11,
           A1m = clamp( A1m , -12.5 , 20 ),
 
-          B1m = lonCyclic * 20,
+          B1m = lonCyclic * 22,
           B1m = clamp( B1m , -13 , 18 ),
 
           Th0m= collective * 13 + 6.5,
@@ -587,29 +562,8 @@
           Th0m = degToRad(Th0m),
           Th0t = degToRad(Th0t),
 
-		  a = 30,
-		  b = -1.5,
-		  c = -12,
-
-		  v1 = 15.433,
-		  v2 = 30.867,
-		  v3 = 61.733,
-		  v4 = 34.725,
-		  v5 = 125.010,
-
-		  stabConst1 = -7.5,
-		  stabConst2 = 7.5,
-
-		  mod = clamp(Vms, 1, 102.889) / v4,
-
-		  collMod1 = ((2 - (collective / 0.5)) * stabConst1) / clamp((v5 / Vms), 1.519, 1.0),
-		  collMod2 = ((collective / 0.5) * stabConst2) / clamp((v5 / Vms), 1.519, 1.0),
-
-		  profondeur = (a / (clamp(Vms, 1, 102.889) / v1)) + (b * (clamp(Vms, 1, 102.889) / v2)) + (c * (clamp(Vms, 1, 102.889) / (v3 * clamp(mod, 1, 1.33)))),
-		  profondeur = collMod1 + profondeur + collMod2 + (pitchRateRad * 3),
-		  profondeur = clamp(profondeur, -5, 25),
-
-		  mainRotorBrake = rotorBrake
+          profondeur = lonCyclic*10 + 3.5/clamp(Vms, 1, 999),
+          mainRotorBrake = rotorBrake
 
         </Expression>
 
@@ -627,7 +581,7 @@
       <Geometry>
         <Position x="0" y="0.353" z="1.42"/>
         <Tilt lateralTilt="0.0" longitudinalTilt="0.0"/>
-        <Blades chord="0.5334" rootCutout="0.9" count="4" flappingHingeHigherLimit="25" flappingHingeLowerLimit="-6" hingeOffset=".32385" radius="7.3152"/>
+        <Blades chord="0.5334" rootCutout="0.9" count="4" flappingHingeHigherLimit="25" flappingHingeLowerLimit="-6" hingeOffset="0.32385" radius="7.3152"/>
         <Rotation clockwise="false"/>
       </Geometry>
 
@@ -871,6 +825,7 @@
         </VortexRingState>
 
         <DesignRPM rpm="292"/>
+        <Controls swashPlatePhaseAngle="-10" />
         <Blades twist="-9" tipLossFactor="0.03"> <!--3.5 degrees of difference due to linearisation: add it to collective -->
            <LiftCoefficient>
                       0           0.4           1.0           1.1          1.2          1.5           20
@@ -1061,7 +1016,7 @@
         <Front x="0.0" y="1.0" z="0.0"/>
         <SurfaceArea area="6.797"/>
       </Geometry>
-      <ControlResponse controlSurfaceLiftCoeffDerivative="0.4" controlSurfaceForceArmPos="0.0" maxControlSurfaceDeflection="25" minControlSurfaceDeflection="-5" controlSurfaceDeflectionRateLimit="0.5"/>
+      <ControlResponse controlSurfaceLiftCoeffDerivative="0.4" controlSurfaceForceArmPos="0.0" maxControlSurfaceDeflection="39" minControlSurfaceDeflection="-8=" controlSurfaceDeflectionRateLimit="20.0"/>
 
       <AerodynamicFeatures>
         <DynamicPressureRatio>
@@ -1177,49 +1132,49 @@
 
         <GroundEffect startDistance="1.2" strength="1.5"/>
         <LiftCurve>
-          -180	0.000
-          -170	0.642
-          -160	0.865
-          -150	0.867
-          -140	0.792
-          -130	0.692
-          -120	0.575
-          -110	0.431
-          -100	0.236
-          -90	0.000
-          -80	-0.294
-          -70	-0.558
-          -60	-0.745
-          -50	-0.847
-          -40	-0.847
-          -30	-0.745
-          -25	-0.795
-          -20	-0.950
-          -15	-1.030
-          -10	-0.710
-          -5	-0.356
-          0	0.000
-          5	0.356
-          10	0.710
-          15	1.030
-          20	0.950
-          25	0.795
-          30	0.745
-          40	0.847
-          50	0.847
-          60	0.745
-          70	0.558
-          80	0.294
-          90	0.000
-          100	-0.236
-          110	-0.431
-          120	-0.575
-          130	-0.692
-          140	-0.792
-          150	-0.867
-          160	-0.865
-          170	-0.642
-          180	0.000
+	-180	0.000
+	-170	0.642
+	-160	0.865
+	-150	0.867
+	-140	0.792
+	-130	0.692
+	-120	0.575
+	-110	0.431
+	-100	0.236
+	-90	0.000
+	-80	-0.294
+	-70	-0.558
+	-60	-0.745
+	-50	-0.847
+	-40	-0.847
+	-30	-0.745
+	-25	-0.795
+	-20	-0.950
+	-15	-1.030
+	-10	-0.710
+	-5	-0.356
+	0	0.000
+	5	0.356
+	10	0.710
+	15	1.030
+	20	0.950
+	25	0.795
+	30	0.745
+	40	0.847
+	50	0.847
+	60	0.745
+	70	0.558
+	80	0.294
+	90	0.000
+	100	-0.236
+	110	-0.431
+	120	-0.575
+	130	-0.692
+	140	-0.792
+	150	-0.867
+	160	-0.865
+	170	-0.642
+	180	0.000
         </LiftCurve>
 
         <DragCurve >
@@ -1477,190 +1432,65 @@
 			  <GroundEffect startDistance="1.5" strength="1.5"/>
 
 			  <LiftCurve >
-          -180	0
-  -170	-1.096
-  -160	-1.998
-  -150	-2.667
-  -140	-3.023
-  -130	-3.023
-  -120	-2.666
-  -110	-1.996
-  -100	-1.094
-  -90	0.5
-  -80	3.711
-  -70	4.948
-  -60	5.566
-  -50	1.5
-  -40	0.8
-  -30	0
-  -25	-0.4
-  -20	-0.8
-  -19.25	-0.8571
-  -19	-0.8889
-  -18.75	-0.9114
-  -18.5	-0.93
-  -18.25	-0.946
-  -18	-0.9595
-  -17.75	-0.9637
-  -17.5	-0.9686
-  -17.25	-0.9745
-  -17	-0.9811
-  -16.75	-0.9884
-  -16.5	-0.9964
-  -16.25	-1.0049
-  -16	-1.0145
-  -15.75	-1.0255
-  -15.5	-1.0386
-  -15.25	-1.054
-  -15	-1.0717
-  -14.75	-1.0886
-  -14.5	-1.0702
-  -14.25	-1.053
-  -14	-1.036
-  -13.75	-1.0175
-  -13.5	-0.9911
-  -13.25	-0.961
-  -13	-0.9338
-  -12.75	-0.9127
-  -12.5	-0.8826
-  -12.25	-0.8496
-  -12	-0.8163
-  -11.75	-0.7813
-  -11.5	-0.7614
-  -11.25	-0.7309
-  -11	-0.698
-  -10.75	-0.665
-  -10.5	-0.6448
-  -10.25	-0.6157
-  -10	-0.5872
-  -9.75	-0.5637
-  -9.5	-0.5369
-  -9.25	-0.5108
-  -9	-0.4858
-  -8.75	-0.4593
-  -8.5	-0.4333
-  -8.25	-0.4083
-  -8	-0.3815
-  -7.75	-0.3546
-  -7.5	-0.33
-  -7.25	-0.3024
-  -7	-0.2763
-  -6.75	-0.2504
-  -6.5	-0.2221
-  -6.25	-0.1969
-  -6	-0.1692
-  -5.75	-0.143
-  -5.5	-0.1159
-  -5.25	-0.0891
-  -5	-0.0622
-  -4.75	-0.0347
-  -4.5	-0.0077
-  -4.25	0.0195
-  -4	0.0467
-  -3.75	0.0738
-  -3.5	0.1007
-  -3.25	0.1279
-  -3	0.1548
-  -2.75	0.1819
-  -2.5	0.2089
-  -2.25	0.2358
-  -2	0.2627
-  -1.75	0.2897
-  -1.5	0.3162
-  -1.25	0.3428
-  -1	0.3693
-  -0.75	0.3957
-  -0.5	0.4218
-  -0.25	0.4474
-  0	0.4728
-  0.25	0.498
-  0.5	0.5239
-  0.75	0.549
-  1	0.5743
-  1.25	0.5991
-  1.5	0.6232
-  1.75	0.6474
-  2	0.6706
-  2.25	0.6962
-  2.5	0.7263
-  2.75	0.7625
-  3	0.8022
-  3.25	0.8456
-  3.5	0.8891
-  3.75	0.9157
-  4	0.9323
-  4.25	0.9513
-  4.5	0.9702
-  4.75	0.9886
-  5	1.0097
-  5.25	1.0304
-  5.5	1.0503
-  5.75	1.0726
-  6	1.0926
-  6.25	1.1114
-  6.5	1.1326
-  6.75	1.1519
-  7	1.172
-  7.25	1.1925
-  7.5	1.2105
-  7.75	1.2311
-  8	1.2483
-  8.25	1.2693
-  8.75	1.3047
-  9	1.3207
-  9.25	1.3357
-  9.5	1.3534
-  9.75	1.368
-  10	1.3839
-  10.25	1.3985
-  10.5	1.4103
-  10.75	1.4248
-  11	1.4365
-  11.25	1.4463
-  11.5	1.4587
-  11.75	1.4675
-  12	1.4772
-  12.25	1.4863
-  12.5	1.4928
-  12.75	1.5016
-  13	1.5058
-  13.25	1.5143
-  13.5	1.517
-  13.75	1.5236
-  14	1.5263
-  14.25	1.5296
-  14.5	1.5316
-  14.75	1.5302
-  15	1.5315
-  15.25	1.5289
-  15.5	1.5259
-  15.75	1.5232
-  16	1.5166
-  16.25	1.5136
-  16.5	1.505
-  16.75	1.5016
-  17	1.4937
-  17.25	1.4882
-  17.5	1.4828
-  17.75	1.4736
-  20	1.2
-  25	0.8
-  30	0.35
-  40	-2.955
-  50	-3.299
-  60	-3.436
-  70	-3.299
-  80	-2.68
-  90	-0.5
-  100	0.957
-  110	1.859
-  120	2.529
-  130	2.886
-  140	2.886
-  150	2.53
-  160	1.861
-  170	0.959
-  180	0
+				-219	-0.978
+				-209	-0.722
+				-199	0.000
+				-189	0.722
+				-179	0.978
+				-169	0.980
+				-159	0.879
+				-149	0.767
+				-139	0.635
+				-129	0.471
+				-119	0.260
+				-109	0.000
+				-104	-0.138
+				-99	-0.260
+				-94	-0.373
+				-89	-0.471
+				-84	-0.560
+				-79	-0.635
+				-74	-0.703
+				-69	-0.767
+				-64	-0.826
+				-59	-0.879
+				-54	-0.930
+				-49	-0.980
+				-44	-1.116
+				-39	-1.078
+				-34	-1.001
+				-29	-0.756
+				-24	-0.336
+				-19	0.084
+				-14	0.504
+				-9	0.925
+				-4	1.085
+				1	1.162
+				6	1.200
+				11	0.980
+				16	0.930
+				21	0.879
+				26	0.826
+				31	0.767
+				36	0.703
+				41	0.635
+				46	0.560
+				51	0.471
+				56	0.373
+				61	0.260
+				66	0.138
+				71	0.000
+				81	-0.260
+				91	-0.471
+				101	-0.635
+				111	-0.767
+				121	-0.879
+				131	-0.980
+				141	-0.978
+				151	-0.722
+				161	0.000
+				171	0.722
+				181	0.978
 			  </LiftCurve>
 
 			  <DragCurve>

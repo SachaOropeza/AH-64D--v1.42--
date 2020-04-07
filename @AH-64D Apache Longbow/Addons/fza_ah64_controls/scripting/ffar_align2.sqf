@@ -56,14 +56,7 @@ _pbvar2 = _ah64 call fza_ah64_getpb;
 _helipitch = _pbvar2 select 0;
 _helibank = _pbvar2 select 1;
 
-//[_missobj,(_pbvar2 select 0),(_pbvar2 select 1)] call fza_ah64_setpb;
-
 _pbvar = _missobj call fza_ah64_getpb;
-
-//angle == pitch, pitch == bank
-//_dir = direction _missobj + (random 0.3) + (random -0.3);
-//_angle = (_pbvar select 0) + ((_ah64 animationphase "pylon1")*10) + (random 0.2) + (random -0.2);
-//_pitch = (_pbvar select 1) + (random 0.2) + (random -0.2);
 
 _dir = direction _missobj + ((_ah64 animationphase "pylon1")*10)*(sin _helibank) + (random 0.3) + (random -0.3);
 _angle = (_pbvar select 0) + ((_ah64 animationphase "pylon1")*10)*(cos _helibank) + (random 0.2) + (random -0.2);
@@ -81,10 +74,6 @@ _vecuz = cos(_angle) * cos(_pitch);
 _missobj setvelocity [0,0,0];
 
 _missobj setVectorDirAndUp [ [_vecdx,_vecdy,_vecdz], [_vecux,_vecuy,_vecuz] ];
-
-if(typeOf _missobj == "fza_275_m261") then {[_missobj,_ah64] execvm "\fza_ah64_controls\scripting\mpsm.sqf";};
-if(typeOf _missobj == "fza_275_m255") then {[_missobj,_ah64] execvm "\fza_ah64_controls\scripting\m255.sqf";};
-if(typeOf _missobj == "fza_275_m257") then {[_missobj,_ah64] execvm "\fza_ah64_controls\scripting\m257.sqf";};
 
 fza_ah64_salvofired = fza_ah64_salvofired + 1;
 };

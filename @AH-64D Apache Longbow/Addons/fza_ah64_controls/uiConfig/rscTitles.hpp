@@ -87,7 +87,6 @@ class RscTitles
 		fadein       =  0;
 		fadeout      =  0;
 		name = "fza_ah64_raddisp";
-		//oldwith uiNameSpace do { fza_ah64_raddisp = _this select 0 }
 		onLoad = "uiNameSpace setvariable ['fza_ah64_raddisp',_this select 0];";
 		class objects
 		{
@@ -1652,19 +1651,19 @@ class RscTitles
 			};
 					class fza_ah64_raddisp_lsrcode // LASER CODE
 					{
-				type = 13;
-				idc = 803;
-				style = 2 + 16;
-				lineSpacing = 1;
-				x = -0.138; //bak -0.049
-				y = 0.71; //bak -0.72
-				w = 0.5;
-				h = 0.12;
-				size = 0.024;
-				colorBackground[] = {0,0,0,0};
-				colorText[] = {0.1,1,0,1};
-				text = "0";
-				font = "EtelkaMonospaceProBold";
+						type = 13;
+						idc = 803;
+						style = 2 + 16;
+						lineSpacing = 1;
+						x = -0.138; //bak -0.049
+						y = 0.71; //bak -0.72
+						w = 0.5;
+						h = 0.12;
+						size = 0.024;
+						colorBackground[] = {0,0,0,0};
+						colorText[] = {0.1,1,0,1};
+						text = "0";
+						font = "EtelkaMonospaceProBold";
 				class Attributes
 				{
 					font = "EtelkaMonospaceProBold";
@@ -1700,15 +1699,15 @@ class RscTitles
 			};
 		};
 	};
-	class fza_ah64_click_monocle
+	class fza_ah64_monocleinbox
 	{
 		idd = 500;
 		movingEnable =  1;
 		duration     =  99999;
-		fadein       =  3;
-		fadeout      =  3;
-		name = "fza_ah64_click_monocle";
-		onLoad = "with uiNameSpace do { fza_ah64_click_monocle = _this select 0 }";
+		fadein       =  0;
+		fadeout      =  0;
+		name = "fza_ah64_monocleinbox";
+		onLoad = "uiNameSpace setvariable ['fza_ah64_monocleinbox',_this select 0];";
 		
 		class controls
 		{
@@ -1726,29 +1725,6 @@ class RscTitles
                 y = (ICE_HUD_SCY-ICE_HUD_Monocle_Size)*0.2;
 				w = ICE_HUD_Monocle_Size*0.707;
                 h = ICE_HUD_Monocle_Size;
-			};
-			class fza_ah64_monocle_txt
-			{
-				type = 13;
-				idc = 502;
-				style = 2 + 16;
-				lineSpacing = 1;
-				x = 0.25;
-				y = 0.55;
-				w = 0.5;
-				h = 0.12;
-				size = 0.02;
-				colorBackground[] = {0,0,0,0};
-				colorText[] = {0.1,1,0,0.5};
-				text = "";
-				font = "EtelkaMonospaceProBold";
-				class Attributes
-				{
-					font = "EtelkaMonospaceProBold";
-					//color = "1EFF00";
-					align = "center";
-					shadow = false;
-				};
 			};
 		};
 	};

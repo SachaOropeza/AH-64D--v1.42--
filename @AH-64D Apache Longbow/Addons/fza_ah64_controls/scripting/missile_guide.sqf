@@ -3,17 +3,7 @@ _bomb = _this select 1;
 if(!(local _bomb)) exitwith {};
 _jetalt = getposasl _jet select 2;
 _target = fza_ah64_mycurrenttarget;
-fza_ah64_shotat_list = fza_ah64_shotat_list + [_target];
 _inittarg = objNull;
-if(_bomb iskindof "fza_agm114c" || _bomb iskindof "fza_agm114k" || _bomb iskindof "fza_fim92") then
-{
-_target = cursortarget;
-if(isNull cursortarget) then
-{
-_inittarg = "EmptyDetector" createvehiclelocal [(getposatl _bomb select 0) + (sin (getdir _bomb) * 7000),(getposatl _bomb select 1) + (cos (getdir _bomb) * 7000),0];
-_target = _inittarg;
-};
-};
 _basedir = direction _bomb;
 _poweredmunition = 0;
 _prox = 0;
@@ -38,13 +28,29 @@ _laserguided = 0;
 _attached = 1;
 _launchmode = fza_ah64_ltype;
 
+fza_ah64_shotat_list = fza_ah64_shotat_list + [_target];
+
+//LASER OFF = AGM 114K WILL NOT TRACK ANYMORE
+
+if(_bomb isKindOf "fza_agm114k" && !(fza_ah64_mycurrenttarget iskindof "Lasertarget")) exitwith{};
+
+if(_bomb iskindof "fza_agm114k" || _bomb iskindof "fza_fim92") then
+{
+_target = cursortarget;
+if(isNull cursortarget) then
+{
+_inittarg = "EmptyDetector" createvehiclelocal [(getposatl _bomb select 0) + (sin (getdir _bomb) * 7000),(getposatl _bomb select 1) + (cos (getdir _bomb) * 7000),0];
+_target = _inittarg;
+};
+};
+
+if (_launchmode == "direct.sqf" && (_bomb isKindOf "fza_agm114l" || _bomb isKindOf "fza_agm114k")) exitwith {};
+
 if (_bomb isKindOf "fza_agm114k" && _designator != _jet && !(_launchmode == "direct.sqf" || _launchmode == "lobl.sqf")) then
 {
 		_target = _designator;
 		_basetargdist = _bomb distance _target;
 };
-
-if (_launchmode == "direct.sqf" && _bomb isKindOf "fza_agm114l") exitwith {};
 
 _bombpb = _bomb call fza_ah64_getpb;
 _pitch = _bombpb select 0;

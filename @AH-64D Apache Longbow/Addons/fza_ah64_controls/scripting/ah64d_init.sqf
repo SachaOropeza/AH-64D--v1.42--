@@ -1,8 +1,20 @@
-///MASTER INIT FOR AH-64D///
+//MASTER INIT FOR AH-64D PROJECT
+
 _heli = _this select 0;
 _heli selectweapon "fza_ma_safe";
+_heli animate ["pdoor",1];
+_heli animate ["gdoor",1];
+_heli animate ["plt_rtrbrake",1];
+_heli animate ["plt_firesw", 0.5];
+_heli animate ["cpg_firesw", 0.5];
+_heli animate ["tads_stow",1];
 
-// ENABLE/DISABLE CPG CONTROLS
+	if(isNil "fza_ah64_cem") then {fza_ah64_cem = true;};
+	if(isNil "fza_ah64_estarted") then {fza_ah64_estarted = false;};
+	if (isNil "fza_ah64_apuon") then {fza_ah64_apuon = 0;};
+
+//ENABLE/DISABLE CPG CONTROLS
+
 if (isCopilotEnabled _heli) then {
     _heli enableCopilot true;
 };
@@ -19,9 +31,9 @@ _skinset = 1;
 if(!(isNil "fza_ah64_noinit")) exitwith {};
 if(!(player in _heli) && !(isNil "fza_ah64_noai")) exitwith {hintsilent "EXITING";};
 
-if (isServer) then {_ahspawns = [_heli] execvm "\fza_ah64_controls\scripting\ahspawns.sqf";};
 
-//default weight//
+//DEFAULT WEIGHT
+
 if((weightRTD _heli select 3) == 0) then
 {
 if(typeof _heli == "fza_ah64d_b2e") then
@@ -30,15 +42,11 @@ _heli setCustomWeightRTD 295;
 };
 };
 
-/////INIT FUNCTIONS/////
 if (isNil "fza_ah64_fx_init") then
 {
 	fza_ah64_fx_init = true;
 	fza_ah64_fx_EH_Fired = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_bi_fired.sqf";
-
 	fza_ah64_fx_30mm=compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\effects_30mm.sqf";
-
-	fza_ah64_fx_rktmsl=compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\fx_rkt_msl.sqf";
 	fza_ah64_rocketalign=compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\ffar_align2.sqf";
 	fza_ah64_hellfirealign=compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\hellfire_align.sqf";
 	fza_ah64_hiderockets = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_hidewpn.sqf";
@@ -61,11 +69,6 @@ if (isNil "fza_ah64_fx_init") then
 	fza_ah64_hellfireweps3 = ["fza_agm114_3_4","fza_agm114_3_ul","fza_agm114_3_ur","fza_agm114_3_ll","fza_agm114_3_lr"];
 	fza_ah64_hellfireweps4 = ["fza_agm114_4_4","fza_agm114_4_ul","fza_agm114_4_ur","fza_agm114_4_ll","fza_agm114_4_lr"];
 
-	///engines///
-	if(isNil "fza_ah64_cem") then {fza_ah64_cem = true;};
-	fza_ah64_estarted = false;
-	if(isengineon _heli) then {fza_ah64_estarted = true;};
-	/////////////
 	fza_ah64_mousehorpos = 0.5;
 	fza_ah64_mousevertpos = 0.5;
 	fza_ah64_laserstate = 0;
@@ -77,14 +80,13 @@ if (isNil "fza_ah64_fx_init") then
 	fza_ah64_pf_daytime = 0;
 	fza_ah64_pfsched = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_pfsched.sqf";
 	fza_ah64_rotordam = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\damage\dam_rotor.sqf";
-	fza_ah64_misguide = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_missileg.sqf";
+	fza_ah64_misguide = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_missileg.sqf"; 	//NO MSL TRACKING WITHOUT IT
 	fza_ah64_misguidearray = [];
 	fza_ah64_curmisguide = 0;
 	fza_ah64_perframe = {
 	uiNamespace setVariable ["fza_ah64_mapfake", (_this select 0)];
 	((_this select 0) displayCtrl 3001) ctrlSetEventHandler ["Draw", '[_this] call fza_ah64_pfsched'];
 	};
-	fza_ah64_apuon = 0;
 	fza_ah64_pwron = 0;
 	fza_ah64_fire1arm = 0;
 	fza_ah64_fire2arm = 0;
@@ -128,7 +130,7 @@ if (isNil "fza_ah64_fx_init") then
 	fza_ah64_digitten = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_digitten.sqf";
 	fza_ah64_digit = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_digit.sqf";
 	fza_ah64_turrets = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_turrets.sqf";
-	fza_ah64_bladerot = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_bladerot.sqf"; //TEST REMOVE BLADE ROTS
+	fza_ah64_bladerot = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_bladerot.sqf";
 	fza_ah64_pnvscontrol = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_pnvs.sqf";
 	fza_ah64_worldtoscreen = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_click_this.sqf";
 	fza_ah64_targetcycle = compile preprocessFileLineNumbers "\fza_ah64_controls\scripting\calls\call_targeting.sqf";
@@ -144,7 +146,6 @@ if (isNil "fza_ah64_fx_init") then
 	fza_ah64_tsdsort = 0;
 	fza_ah64_tsdsortarray = ["all"];
 	fza_ah64_laser = 0;
-	////target xfer///////
 	fza_ah64_pfzcache = ["none","none",[],0];
 	publicvariable "fza_ah64_pfzcache";
 	if(isNil "fza_ah64_mis_ir") then {fza_ah64_mis_ir = ["M_R73_AA","M_Strela_AA","M_Igla_AA","M_Stinger_AA","M_Sidewinder_AA","fza_fim92"];};
@@ -153,7 +154,6 @@ if (isNil "fza_ah64_fx_init") then
 	fza_ah64_asethreats = [];
 	fza_ah64_threattracking = [];
 	fza_ah64_threatfiring = [];
-	/////targeting//////
 	fza_ah64_agmode = 0;
 	fza_ah64_mycurrenttarget = objNull;
 	fza_ah64_targlos = 0;
@@ -178,7 +178,6 @@ if (isNil "fza_ah64_fx_init") then
 	fza_ah64_tsdmode = "nav";
 	fza_ah64_tsdmap = 0;
 	fza_ah64_dispfcrlist = [];
-	//turrets//
 	fza_ah64_estate = 0;
 	fza_ah64_turdir = 0;
 	fza_ah64_turelev = 0;
@@ -196,30 +195,28 @@ if (isNil "fza_ah64_fx_init") then
 	fza_ah64_head1elev = 0;
 	fza_ah64_cmpressed = 0;
 	fza_ah64_nohelpers = 1;
+	fza_ah64_ihadssoff = 1;
+	fza_ah64_monocleinbox = 1;
 	fza_ah64_hducolor = [0.1, 1, 0, 1];
 	fza_ah64_schedarray = [fza_ah64_turrets,fza_ah64_pnvscontrol,fza_ah64_worldtoscreen,fza_ah64_targetcycle,fza_ah64_slipcheck,fza_ah64_timetowp,fza_ah64_rotordam,fza_ah64_ldrfcall,fza_ah64_hmdihadss,fza_ah64_bladerot]; //disabled fza_ah64_cpg_controls//
 	fza_ah64_asemisarray = [];
 	if(isNil "fza_ah64_pfsstate") then {fza_ah64_mapfaker = addMissionEventHandler ["Draw3D", {[0] call fza_ah64_pfsched;}]; fza_ah64_pfsstate = true;};
 
-//EXPERIMENTAL - RUN ONCE FOR PLAYER ONLY//
+//EXPERIMENTAL - RUN ONCE FOR PLAYER ONLY
+
 _weapontracker = [player] execvm "\fza_ah64_controls\scripting\page_wpn.sqf";
 _wcatracker = [player] execvm "\fza_ah64_controls\scripting\page_wca.sqf";
 _flttracker = [player] execvm "\fza_ah64_controls\scripting\page_flt.sqf";
 _engtracker = [player] execvm "\fza_ah64_controls\scripting\page_eng.sqf";
 _asetracker = [player] execvm "\fza_ah64_controls\scripting\page_ase.sqf";
 _ufdtracker = [player] execvm "\fza_ah64_controls\scripting\ufd.sqf";
-//_targettracker1 = [_heli] execvm "\fza_ah64_controls\scripting\targeting.sqf";
-//_targetscanner = [player] execvm "\fza_ah64_controls\scripting\fcr_longbow.sqf";
+_targetscanner = [player] execvm "\fza_ah64_controls\scripting\fcr_longbow.sqf";
 _tsdfcr = [player] execvm "\fza_ah64_controls\scripting\tsd_fcr.sqf";
-///////////////////////////////////////////
-
 };
 
-//gen//
 _enginetracker = [_heli] execvm "\fza_ah64_controls\scripting\func_engines.sqf";
 _aiturrets = [_heli] execvm "\fza_ah64_controls\scripting\turrets.sqf";
 _blades = [_heli] execvm "\fza_ah64_controls\scripting\bladerot.sqf";
-//_arming = [_heli] execvm "\fza_ah64_controls\arming\arming.sqf";
 //if(!(isMultiplayer)) then {_savetracker = player execvm "\fza_ah64_controls\scripting\savetracker.sqf";};
 if(isnil "fza_ah64_tiron") then {fza_ah64_tiron = false;};
 

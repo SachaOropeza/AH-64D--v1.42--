@@ -53,7 +53,7 @@ _markerarea setMarkerColorLocal "ColorWhite";
 
 createmarkerlocal [_markername,[_xpos,_ypos]];
 _markername setMarkerShapeLocal "ICON";
-_markername setMarkerTypeLocal "DOT";
+_markername setMarkerTypeLocal "Empty";
 _markername setMarkerTextLocal "PFZ" + format ["%1",_pfznum];
 _markername setMarkerColorLocal "ColorBlack";
 

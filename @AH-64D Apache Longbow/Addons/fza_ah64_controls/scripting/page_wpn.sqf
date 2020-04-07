@@ -139,7 +139,6 @@ _chaffformat1 = [fza_ah64_chaffcount,"\fza_ah64_us\tex\CHAR\G"] call fza_ah64_di
 _chaffformat2 = [fza_ah64_chaffcount,"\fza_ah64_us\tex\CHAR\G"] call fza_ah64_digit;
 //gun
 _gunammo = _heli ammo "fza_m230";
-if("fza_burstlimiter" in _weps) then {_gunammo = _heli ammo "fza_burstlimiter";};
 _gunformat1 = [_gunammo,"\fza_ah64_us\tex\CHAR\G"] call fza_ah64_digitthou;
 _gunformat2 = [_gunammo,"\fza_ah64_us\tex\CHAR\G"] call fza_ah64_digithun;
 _gunformat3 = [_gunammo,"\fza_ah64_us\tex\CHAR\G"] call fza_ah64_digitten;

@@ -1,6 +1,4 @@
-//NOTE TO SELF: A3 version//
 _heli = _this select 0;
-uiSleep 1;
 
 if (isServer || isDedicated || isMultiplayer) then 
 {

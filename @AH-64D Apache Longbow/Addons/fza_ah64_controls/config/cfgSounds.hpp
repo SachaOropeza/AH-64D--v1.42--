@@ -228,31 +228,43 @@ class CfgSounds
 	class fza_ah64_apustart_3D
 	{
 		name = "fza_ah64_apustart_3D";
-		sound[] = {"fza_ah64_us\audio\APU_Start.ogg",2,1};
+		sound[] = {"fza_ah64_us\audio\APU_Start.ogg",1,1,300};
 		titles[]={};
 	};
-	class fza_ah64_loop_3D
+	class fza_ah64_apu_loop_3D
 	{
-		name = "fza_ah64_loop_3D";
-		sound[] = {"fza_ah64_us\audio\APU_Loop.ogg",2,1};
+		name = "fza_ah64_apu_loop_3D";
+		sound[] = {"fza_ah64_us\audio\APU_Loop.ogg",1,1,300};
 		titles[]={};
 	};
 	class fza_ah64_apustop_3D
 	{
 		name = "fza_ah64_apustop_3D";
-		sound[] = {"fza_ah64_us\audio\APU_End.ogg",2,1};
+		sound[] = {"fza_ah64_us\audio\APU_End.ogg",1,1,300};
 		titles[]={};
+	};
+	class fza_ah64_bat_loop_3D
+	{
+		name = "fza_ah64_bat_loop_3D";
+		sound[] = {"fza_ah64_us\audio\avionics.ogg",10,1,10};
+		titles[]={};	
 	};
 	class fza_ah64_estart_3D
 	{
 		name = "fza_ah64_estart_3D";
-		sound[] = {"fza_ah64_us\audio\ah64_estart1.ogg",2,1};
+		sound[] = {"fza_ah64_us\audio\ah64_estart1.ogg",1,1,300};
 		titles[]={};
 	};
 	class fza_ah64_warntest_3D
 	{
 		name = "fza_ah64_warntest_3D";
-		sound[] = {"\fza_ah64_us\audio\betty\bt_warntest.ogg",1,1};
+		sound[] = {"\fza_ah64_us\audio\betty\bt_warntest.ogg",3,1,1};
+		titles[]={};
+	};
+	class fza_ah64_fake_3D
+	{
+		name = "fza_ah64_fake_3D";
+		sound[] = {"\fza_ah64_us\audio\betty\fakesound.ogg",1,1,10};
 		titles[]={};
 	};
 	///END OF STARTING CLICKABLE SEQUENCE SOUNDS////
@@ -298,6 +310,30 @@ class CfgSounds
 	{
 		name = "fza_ah64_switch_flip1";
 		sound[] = {"\fza_ah64_us\audio\switch_flip1.ogg",1,1,1};
+		titles[]={};
+	};
+	class fza_ah64_switch_flip2
+	{
+		name = "fza_ah64_switch_flip2";
+		sound[] = {"\fza_ah64_us\audio\switch_flip2.ogg",1,1,1};
+		titles[]={};
+	};
+	class fza_ah64_switch_flip3
+	{
+		name = "fza_ah64_switch_flip3";
+		sound[] = {"\fza_ah64_us\audio\switch_flip3.ogg",1,1,1};
+		titles[]={};
+	};
+	class fza_ah64_switch_flip4
+	{
+		name = "fza_ah64_switch_flip4";
+		sound[] = {"\fza_ah64_us\audio\switch_flip4.ogg",1,1,1};
+		titles[]={};
+	};
+	class fza_ah64_button_rotary
+	{
+		name = "fza_ah64_button_rotary";
+		sound[] = {"\fza_ah64_us\audio\rotary.ogg",1,1,1};
 		titles[]={};
 	};
 	///END OF GENERIC FLIP SOUNDS///

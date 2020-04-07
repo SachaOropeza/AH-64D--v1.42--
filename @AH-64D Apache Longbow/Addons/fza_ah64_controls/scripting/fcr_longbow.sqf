@@ -21,7 +21,8 @@ _heli = vehicle player;
 	{
 		//add targets to master list
 		//_targets = (list _radsweep);
-		_targets = vehicles - allDead;
+		//_targets = vehicles - allDead;
+		_targets = _heli targets [false, 16000, [], 8];
 		{
 		if(alive _x && !(_x in fza_ah64_targetlist)) then
 		{
@@ -30,10 +31,10 @@ _heli = vehicle player;
 			_adaunit = false;
 			{if(_i iskindof _x) then {_adaunit = true;};} foreach fza_ah64_ada_units;
 
-			_theta = [_heli,(getposatl _heli select 0),(getposatl _heli select 1),(getposatl _i select 0),(getposatl _i select 1)] call fza_ah64_reldir;
+			//_theta = [_heli,(getposatl _heli select 0),(getposatl _heli select 1),(getposatl _i select 0),(getposatl _i select 1)] call fza_ah64_reldir;
 
 			if (_i distance _heli > 10000 || (_i iskindof "man") || !(alive _i)) then {_targets = _targets - [_i]; _rem = true;};
-			if (_theta < 315 && _theta > 45 && (fza_ah64_agmode == 0 || fza_ah64_agmode > 1) && (getpos _i select 2 >= 10)) then {_targets = _targets - [_i]; _rem = true;};
+			if ((fza_ah64_agmode == 0 || fza_ah64_agmode > 1) && (getpos _i select 2 >= 10)) then {_targets = _targets - [_i]; _rem = true;};
 			if (fza_ah64_agmode == 1 && ((getpos _i select 2) < 10)) then {_targets = _targets - [_i]; _rem = true;};
 			if (!(_i isKindOf "helicopter" || _i isKindOf "plane" || _i isKindOf "car" || _i isKindOf "tank" || _i isKindOf "ship" || _i isKindOf "StaticCannon" || _adaunit)) then {_targets = _targets - [_i]; _rem = true;};
 
@@ -44,7 +45,7 @@ _heli = vehicle player;
 
 				if(_adaunit) then {_detectchance = 0.00417;};
 				if(((_i distance _heli) * _detectchance) > _randchance) then {_targets = _targets - [_i];};
-				if((terrainIntersectasl [getposasl _heli, [(getPosASL _i select 0),(getPosASL _i select 1),(getPosASL _i select 2)+1]]) || (lineIntersects [getposasl _heli, getPosASL _i, _heli, _i])) then {_targets = _targets - [_i];};
+				//if((terrainIntersectasl [getposasl _heli, [(getPosASL _i select 0),(getPosASL _i select 1),(getPosASL _i select 2)+1]]) || (lineIntersects [getposasl _heli, getPosASL _i, _heli, _i])) then {_targets = _targets - [_i];};
 			};
 		sleep 0.03;
 		};
@@ -55,7 +56,7 @@ _heli = vehicle player;
 		{if(!(_x in fza_ah64_fcrlist)) then {fza_ah64_fcrlist = fza_ah64_fcrlist + [_x];};} foreach _targets;
 	};
 	///////TADS/VISUAL TARGETS//////
-	_targlist = _heli neartargets 6000;
+	/*_targlist = _heli neartargets 6000;
 	_targlist = _targlist - allDead;
 	{_posobj = nearestobject (_x select 0); (driver _heli) reveal _posobj; if ((_posobj isKindOf "helicopter" || _posobj isKindOf "plane" || _posobj isKindOf "car" || _posobj isKindOf "tank" || _posobj isKindOf "ship" || _posobj iskindof "StaticCannon") && (alive _posobj) && !(_posobj in fza_ah64_targetlist)) then {fza_ah64_targetlist = fza_ah64_targetlist + [_posobj];}; sleep 0.01;} foreach _targlist;
 	{
@@ -77,5 +78,5 @@ _heli = vehicle player;
 	} foreach fza_ah64_targetlist;
 	fza_ah64_targetlist = fza_ah64_targetlist - [_heli];
 	fza_ah64_fcrlist = fza_ah64_fcrlist - [_heli];
-	sleep 2;
+	sleep 2;*/
 };

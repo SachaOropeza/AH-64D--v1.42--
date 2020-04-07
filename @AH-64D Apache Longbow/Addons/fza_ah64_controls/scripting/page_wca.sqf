@@ -57,18 +57,6 @@ if(fza_ah64_pl_mpd == "wca" || fza_ah64_pr_mpd == "wca") then
 		_damlist = _damlist - ["\fza_ah64_us\tex\MPD\APUON.paa"];
 		_apuon = 0;
 	};
-/*
-	if(fza_ah64_pwron == 1 && _baton == 0) then
-	{
-		_damlist = _damlist + ["\fza_ah64_us\tex\MPD\BATON.paa"];
-		_baton = 1;
-	};
-	if(fza_ah64_pwron == 0) then
-	{
-		_damlist = _damlist - ["\fza_ah64_us\tex\MPD\BATON.paa"];
-		_baton = 0;
-	};
-*/
 	if(isAutoHoverOn _heli && _hovhold == 0) then
 	{
 		_damlist = _damlist + ["\fza_ah64_us\tex\MPD\HOVERHOLD.paa"];

@@ -1,5 +1,5 @@
 class BIS_AddonInfo
 {
-	author="Franze, Nodunit, Sacha 'Voodoo' Oropeza, Zeitsev & Community";
+	author="Franze, Nodunit, Sacha 'Voodooflies' Oropeza, Keplager & Community";
 	timepacked="1550631914";
 };

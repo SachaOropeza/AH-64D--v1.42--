@@ -9,8 +9,8 @@ if(player == driver _heli && (vehicle player) isKindOf "fza_ah64base") then
 
 			if(player == driver _heli && (_heli animationphase "plt_apu" > 0.5 || isengineon _heli)) then
 			{
-			fza_ah64_headdir = (-0.125*(inputaction "AimLeft" + (0.125 * inputaction "LookLeft"))) + (0.125*(inputaction "AimRight" + (0.125 * inputaction "LookRight")));
-			fza_ah64_headelev = (0.125*(inputaction "AimUp" + (0.125 * inputaction "LookUp"))) + (-0.125*(inputaction "AimDown" + (0.125 * inputaction "LookDown")));
+			fza_ah64_headdir = (-0.0125*(inputaction "AimLeft" + (0.0125 * inputaction "LookLeft"))) + (0.0125*(inputaction "AimRight" + (0.0125 * inputaction "LookRight")));
+			fza_ah64_headelev = (0.0125*(inputaction "AimUp" + (0.0125 * inputaction "LookUp"))) + (-0.0125*(inputaction "AimDown" + (0.0125 * inputaction "LookDown")));
 
 			fza_ah64_pnvsgreff = ppEffectCreate ["colorCorrections",1500];
 			fza_ah64_pnvsgreff ppEffectAdjust [1,1,0,[-2,2,-2,0.05],[-4.99,0.74,0.44,0.38],[0.33,0.33,0.33,-0.64],[0,0,0,0,0,0,4]]; //TEST PNVS OPTICS REWORK
@@ -34,6 +34,12 @@ if(player == driver _heli && (vehicle player) isKindOf "fza_ah64base") then
 			};
 
 			if(cameraView == "EXTERNAL" || cameraView == "INTERNAL") then
+			{
+			fza_ah64_pnvsgreff ppEffectEnable false;
+			fza_ah64_pnvsfgeff ppEffectEnable false;
+			};
+			
+			if (vehicle player != _heli && !(vehicle player isKindOf "fza_ah64base") || !(alive _heli) && !(vehicle player isKindOf "fza_ah64base") || !(alive player)) then 
 			{
 			fza_ah64_pnvsgreff ppEffectEnable false;
 			fza_ah64_pnvsfgeff ppEffectEnable false;
@@ -62,29 +68,10 @@ if(player == driver _heli && (vehicle player) isKindOf "fza_ah64base") then
 			  fza_ah64_pnvselev = if(_angleY < 0) then [{_angleY * (1/45)},{_angleY * (1/20)}];
 			};
 
-			//if(fza_ah64_pnvsdir > 0.75) then {fza_ah64_pnvsdir = 0.75;};
-			//if(fza_ah64_pnvsdir < -0.75) then {fza_ah64_pnvsdir = -0.75;};
 			fza_ah64_pnvsdir = fza_ah64_pnvsdir min 0.75 max -0.75;
 			fza_ah64_pnvselev = fza_ah64_pnvselev min 1 max -1;
-			
-			/*
-			if(fza_ah64_estate > -1 && !(isengineon _heli)) then {fza_ah64_estate = fza_ah64_estate - 0.02; fza_ah64_pnvsdir = fza_ah64_estate;};
-			if(isengineon _heli && fza_ah64_estate < 0) then {fza_ah64_estate = fza_ah64_estate + 0.02; fza_ah64_pnvsdir = fza_ah64_estate;};
-			if(fza_ah64_estate < -0.98 && !(isengineon _heli)) then {fza_ah64_pnvsdir = -1; fza_ah64_estate = -1;};
-			if(fza_ah64_estate > -0.02 && (isengineon _heli)) then {fza_ah64_estate = 0;};
-			*/
-			
-			/*
-			if (_heli animationphase "plt_apu" < 0.5 && !isEngineOn _heli) then
-			{
-			fza_ah64_pnvsdir = -1;			
-			};
-			TEEEEEEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTT CONDITION POTENTIELLEMENT DUPLIQUEE
-			*/
 			
 			if("fza_ah64_pnvs_fail" in (_heli magazinesturret [-1])) then {fza_ah64_pnvsdir = -1; fza_ah64_pnvselev = 1;};
 			_heli animate ["pnvs",fza_ah64_pnvsdir];
 			_heli animate ["pnvs_vert",fza_ah64_pnvselev];
-
-
 };
