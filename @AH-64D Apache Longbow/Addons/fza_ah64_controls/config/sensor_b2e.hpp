@@ -83,7 +83,7 @@ class Components: Components
       class LaserSensorComponent: SensorTemplateLaser
       {
         componentType = "LaserSensorComponent";
-      };
+      }
 
     };
   };

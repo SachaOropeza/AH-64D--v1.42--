@@ -53,6 +53,7 @@ class CfgAmmo
 	
 	class fza_30x113: B_30mm_HE
 	{
+		access = 1;
 		soundsetbulletfly[] = {"fza_sc_bullet_flyby_soundset"};
 		soundsetsoniccrack[] = {"fza_sc_30x113_soundset"};
 		soundsetexplosion[] = {"fza_20mm_explosion_soundset", "fza_explosion_echo_small_soundset"};		

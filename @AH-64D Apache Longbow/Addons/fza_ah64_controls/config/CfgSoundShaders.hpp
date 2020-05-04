@@ -277,7 +277,7 @@ class CfgSoundShaders {
 
 	class fza_small_explosion_reverb_houses_soundshader 
 	{
-		samples[] = {{"fza_ah64_us\audio\Echo\Reflections\Small\houses.ogg", 1}};
+		samples[] = {{"fza_ah64_us\audio\Echo\Reflections\Small\small\houses.ogg", 1}};
 		volume = "houses";
 		range = 500;
 		limitation = 1;
@@ -285,7 +285,7 @@ class CfgSoundShaders {
 	};
 	class fza_small_explosion_reverb_meadow_soundshader 
 	{
-		samples[] = {{"fza_ah64_us\audio\Echo\Reflections\Small\meadow.ogg", 1}};
+		samples[] = {{"fza_ah64_us\audio\Echo\Reflections\Small\small\meadow.ogg", 1}};
 		volume = "meadows max sea";
 		range = 500;
 		limitation = 1;
@@ -293,7 +293,7 @@ class CfgSoundShaders {
 	};
 	class fza_small_explosion_reverb_forest_soundshader 
 	{
-		samples[] = {{"fza_ah64_us\audio\Echo\Reflections\Small\forest.ogg", 1}};
+		samples[] = {{"fza_ah64_us\audio\Echo\Reflections\Small\small\forest.ogg", 1}};
 		volume = "forest";
 		range = 500;
 		limitation = 1;

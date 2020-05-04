@@ -12,8 +12,8 @@ class fza_ah64_RscButton
 	font = FontM;
 	sizeEx = 0.025;
 	soundPush[] = {, 0.2, 1};
-	soundClick[] = { "\A3\ui_f\data\sound\RscButton\soundClick", 0.09, 1 };	
-    soundEscape[] = { "\A3\ui_f\data\sound\RscButton\soundEscape", 0.09, 1 };
+	soundClick[] = {"ui\ui_ok", 0.2, 1};
+	soundEscape[] = {"ui\ui_cc", 0.2, 1};
 	default = false;
 	offsetX = 0;
 	offsetY = 0;
@@ -106,8 +106,8 @@ class fza_ah64_RscCombo:fza_ah64_RscLB_C
 {
 	type = CT_COMBO;
 	wholeHeight = 0.3;
-	arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";	
-    arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
+	arrowEmpty = "\ca\ui\data\ui_arrow_combo_ca.paa";
+	arrowFull = "\ca\ui\data\ui_arrow_combo_active_ca.paa";
 	maxHistoryDelay = 1.0;
 	shadow = 0;
 	class ScrollBar
@@ -115,10 +115,10 @@ class fza_ah64_RscCombo:fza_ah64_RscLB_C
 		color[] = {0.92, 0.73, 0, 1};
 		colorActive[] = {0.92, 0.73, 0, 1};
 		colorDisabled[] = {0.92, 0.73, 0, 0.3};
-        thumb = "\A3\ui_f\data\gui\cfg\slider\thumb_ca.paa";
-		arrowFull = "\A3\ui_f\data\gui\cfg\slider\arrowFull_ca.paa";
-		arrowEmpty = "\A3\ui_f\data\gui\cfg\slider\arrowEmpty_ca.paa";
-		border = "\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
+		thumb = "\ca\ui\data\ui_scrollbar_thumb_ca.paa";
+		arrowFull = "\ca\ui\data\ui_arrow_top_active_ca.paa";
+		arrowEmpty = "\ca\ui\data\ui_arrow_top_ca.paa";
+		border = "\ca\ui\data\ui_border_scroll_ca.paa";
 		shadow = 0;
 	};
 };
@@ -126,8 +126,8 @@ class fza_ah64_RscListbox:fza_ah64_RscLB_C
 {
 	type = CT_LISTBOX;
 	wholeHeight = 0.3;
-	arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";	
-    arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
+	arrowEmpty = "\ca\ui\data\ui_arrow_combo_ca.paa";
+	arrowFull = "\ca\ui\data\ui_arrow_combo_active_ca.paa";
 	maxHistoryDelay = 1.0;
 	shadow = 0;
 	class ListScrollBar
@@ -135,10 +135,10 @@ class fza_ah64_RscListbox:fza_ah64_RscLB_C
 		color[] = {0.92, 0.73, 0, 1};
 		colorActive[] = {0.92, 0.73, 0, 1};
 		colorDisabled[] = {0.92, 0.73, 0, 0.3};
-		thumb = "\A3\ui_f\data\gui\cfg\slider\thumb_ca.paa";
-		arrowFull = "\A3\ui_f\data\gui\cfg\slider\arrowFull_ca.paa";
-		arrowEmpty = "\A3\ui_f\data\gui\cfg\slider\arrowEmpty_ca.paa";
-		border = "\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
+		thumb = "\ca\ui\data\ui_scrollbar_thumb_ca.paa";
+		arrowFull = "\ca\ui\data\ui_arrow_top_active_ca.paa";
+		arrowEmpty = "\ca\ui\data\ui_arrow_top_ca.paa";
+		border = "\ca\ui\data\ui_border_scroll_ca.paa";
 		shadow = 0;
 	};
 };
