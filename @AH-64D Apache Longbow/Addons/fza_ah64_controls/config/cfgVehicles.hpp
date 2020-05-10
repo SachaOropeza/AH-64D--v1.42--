@@ -747,7 +747,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				//condition="(player == driver this || player == gunner this) && alive this && !(this iskindof ""fza_ah64a_l"" || this iskindof ""fza_ah64a_e"")";
@@ -762,7 +762,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && alive this";
@@ -776,7 +776,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="zamerny";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pl_mpd == ""wpn"") && (currentweapon this == ""fza_m230"" || currentweapon this == ""fza_burstlimiter"")";
@@ -790,7 +790,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="zamerny";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pl_mpd == ""wpn"") && (currentweapon this in fza_ah64_rocketweps14 || currentweapon this in fza_ah64_rocketweps23 || currentweapon this in fza_ah64_rocketweps1 || currentweapon this in fza_ah64_rocketweps2 || currentweapon this in fza_ah64_rocketweps3 || currentweapon this in fza_ah64_rocketweps4)";
@@ -804,7 +804,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="zamerny";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pl_mpd == ""wpn"")";
@@ -818,7 +818,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="zamerny";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pl_mpd == ""wpn"") && (currentweapon this == ""fza_agm114_23_8"" || currentweapon this == ""fza_agm114_14_8"" || currentweapon this in fza_ah64_hellfireweps1 || currentweapon this in fza_ah64_hellfireweps2 || currentweapon this in fza_ah64_hellfireweps3 || currentweapon this in fza_ah64_hellfireweps4)";
@@ -890,7 +890,7 @@ class CfgVehicles
 				displayName="";
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=3;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="player == driver this || player == gunner this";
@@ -904,7 +904,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="player == driver this || player == gunner this";
@@ -918,7 +918,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="player == driver this || player == gunner this";
@@ -947,7 +947,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""fcr"" ||fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pl_mpd == ""tsd"")";
@@ -961,7 +961,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pr_mpd == ""fcr"" || fza_ah64_pr_mpd == ""ase"")";
@@ -975,7 +975,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pl_mpd == ""tsd"")";
@@ -990,7 +990,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pl_mpd == ""tsd"") && fza_ah64_tsdmode == ""nav""";
@@ -1004,7 +1004,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pl_mpd == ""tsd"") && fza_ah64_tsdmode == ""nav""";
@@ -1018,7 +1018,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pl_mpd == ""tsd"") && fza_ah64_tsdmode == ""nav""";
@@ -1032,7 +1032,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pl_mpd == ""tsd"")";
@@ -1047,7 +1047,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pr_mpd == ""fcr"")";
@@ -1061,7 +1061,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pr_mpd == ""fcr"")";
@@ -1073,7 +1073,7 @@ class CfgVehicles
 				displayName="";
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pr_mpd == ""fcr"")";
@@ -1085,7 +1085,7 @@ class CfgVehicles
 				displayName="";
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""tsd"" || fza_ah64_pr_mpd == ""fcr"")";
@@ -1145,7 +1145,7 @@ class CfgVehicles
 				displayName="";
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this)";
@@ -1187,7 +1187,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this)";
@@ -1201,7 +1201,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this)";
@@ -1215,7 +1215,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this)";
@@ -1229,7 +1229,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""ase"")";
@@ -1243,7 +1243,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""ase"")";
@@ -1271,7 +1271,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this) && (fza_ah64_pr_mpd == ""ase"")";
@@ -1285,7 +1285,7 @@ class CfgVehicles
 				showSwitchAction=false;
 				position="pilot_action";
 				onlyForPlayer=1;
-				radius=8;
+				radius=0;
 				showWindow=0;
 				priority=0;
 				condition="(player == driver this || player == gunner this)";
