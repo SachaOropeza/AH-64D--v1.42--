@@ -9,9 +9,7 @@ _mistheta = 0;
 
 if(player == driver _ac || player == gunner _ac) then {_usesound = true;};
 
-if(!(_munition isKindOf "missileBase") || !(isengineon _ac)) exitwith {};
-
-if (!(isNil "fza_ah64_noscripts") || !(isengineon _ac) || !(alive _ac) || !(_munition isKindOf "MissileBase") || !(player in _ac)) exitwith {};
+if(!(_munition isKindOf "missileBase") || !(isengineon _ac || (alive _ac))) exitwith {};
 
 _missile = nearestobject [_hostile,_munition];
 _posac = getpos _ac;
@@ -20,7 +18,8 @@ _range = _poshostile distance _posac;
 _highlow = "High";
 
 _fza_ah64_incominghandled = _hostile getVariable ["fza_ah64_shotCounter", 0];
-
+//////////////////////////////////
+//Event is fired twice per missile fired at the aircraft. Modulo operator used so that it is only called for the second event.
 /*5 / 2 => 2
 5 % 2 => 1
 
@@ -28,6 +27,7 @@ _fza_ah64_incominghandled = _hostile getVariable ["fza_ah64_shotCounter", 0];
 1 (1 % 2 => 1) -- Doesn't run
 2 (2 % 2 => 0) -- Runs
 3 (3 % 2 => 1) -- Doesn't run*/
+//////////////////////////////////
 _hostile setVariable ["fza_ah64_shotCounter", (_fza_ah64_incominghandled + 1) % 2];
 if (_fza_ah64_incominghandled % 2 == 1) exitWith {};
 
@@ -53,11 +53,7 @@ if (_posac select 2 > _poshostile select 2) then
 	_highlow = "Low";
 };
 
-_reldir = ((_poshostile select 0) - (_posac select  0)) atan2 ((_poshostile select 1) - (_posac select 1));
-if (_reldir < 0) then
-{
-	_reldir = _reldir + 360;
-};
+_reldir = _ac call fza_fnc_relativeDirection;
 
 _theta = (360 + (_reldir - (direction _ac))) Mod 360;
 _oclock = 12;
@@ -128,25 +124,21 @@ if (_theta > 315 && _theta < 346) then
 	_clockaud = "fza_ah64_bt_11oclock";
 };
 
-_spoken = 1;
-_read = 1;
 if(!(_hostile in fza_ah64_threatfiring)) then {fza_ah64_threatfiring = fza_ah64_threatfiring + [_hostile];};
 if (_ac getVariable "fza_ah64_aseautopage" == 2) then {
         [_ac, 1, "ase"] call fza_fnc_mpdSetDisplay;
     };
-if (_read == 1 && _range < 8000) then
+if (_range < 8000) then
 {
 	_ac vehiclechat format ["Missile %1 OClock %2 %3 Meters",_oclock,_highlow,_range];
 	//hint str [_oclock,_highlow,_range];
-	_read = 2;
 };
 
-if (_spoken == 1 && _range < 8000) then
+if (_range < 8000) then
 {
 	_bthlsound = "fza_ah64_bt_" + _highlow;
 	if (_usesound) then {
         ["fza_ah64_bt_missile", 0.65, _clockaud, 1.3, _bthlsound, 0.62] spawn fza_fnc_playAudio;
-		_spoken = 2;
     };
 };
 
@@ -171,11 +163,7 @@ if(local _ac && !(player == driver _ac) || !(player == gunner _ac)) then
 	waitUntil {_missile distance _ac < 200};	
 	while {(alive _missile) && (alive _ac)} do
 	{
-		_reldir = ((getposasl _ac select 0) - (getposasl _missile select 0)) atan2 ((getposasl _ac select 1) - (getposasl _missile select 1));
-		if (_reldir < 0) then
-		{
-			_reldir = _reldir + 360;
-		};
+		_reldir = _ac call fza_fnc_relativeDirection;
 		_mistheta = (360 + (_reldir - (direction _missile))) Mod 360;
 		_missile setdir (_mistheta - (random _chance1));
 		_pbvar = _missile call fza_fnc_getPitchBank;
@@ -186,7 +174,6 @@ if(local _ac && !(player == driver _ac) || !(player == gunner _ac)) then
 		[_missile, _pitch, _bank] call fza_fnc_setPitchBank;
 		sleep 0.1;
 	};
-    
     /* // to be added in case munitions inside arma without 2 cores are found
 	sleep 5;
 	_hostile setVariable ["fza_ah64_shotCounter", 0];*/
