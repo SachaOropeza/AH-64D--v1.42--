@@ -84,6 +84,7 @@ class CfgAmmo
 		trackLead					= 0.2;
 		maneuvrability				= 21;
 		timeToLive					= 70;
+		cmImmunity					= 1;
 
 		effectsmissile = "fza_ah64_hellfiresmoke";
 		muzzleEffect = "BIS_fnc_effectFiredHeliRocket";
@@ -205,8 +206,6 @@ class CfgAmmo
 		airLock = 0;
 		irlock = 0;	
 		nvLock=0;
-
-		cmimmunity = 1;
 		
 		//MSL sensors definition
 		missileLockMaxDistance = 8000;

@@ -19,20 +19,20 @@ Author:
 	Unknown
 ---------------------------------------------------------------------------- */
 params ["_heli"];
-
-fza_ah64_asethreats = fza_ah64_targetlist select { alive _x && _x call fza_fnc_targetIsADA && [side _x, side _heli] call BIS_fnc_sideIsEnemy};
+//Disabling this line below fixes the ASe page & The contents below are already beign done on page_ase
+//fza_ah64_asethreats = fza_ah64_targetlist select { alive _x && _x call fza_fnc_targetIsADA && [side _x, side _heli] call BIS_fnc_sideIsEnemy};
 
 {
 	if ((_heli == assignedTarget _x || _x AimedAtTarget[_heli] > 0.5) && (alive _x) && !(_x in fza_ah64_threattracking)) then {
 		fza_ah64_threattracking = fza_ah64_threattracking + [_x];
-		if (_x iskindof "ZSU_Base") then {
-			["fza_ah64_bt_zsu23", 2.3, "fza_ah64_bt_tracking", 0.65] execvm "\fza_ah64_controls\scripting\damage\dam_bt_audio.sqf";
+		if (_i iskindof "ZSU_Base") then {
+			["fza_ah64_bt_zsu23", 2.3, "fza_ah64_bt_tracking", 0.65] spawn fza_fnc_playAudio;
 		};
-		if (_x iskindof "2S6M_Tunguska") then {
-			["fza_ah64_bt_sa19", 1.6, "fza_ah64_bt_tracking", 0.65] execvm "\fza_ah64_controls\scripting\damage\dam_bt_audio.sqf";
+		if (_i iskindof "2S6M_Tunguska") then {
+			["fza_ah64_bt_sa19", 1.6, "fza_ah64_bt_tracking", 0.65] spawn fza_fnc_playAudio;
 		};
-		if !((_x iskindof "ZSU_Base") || (_x iskindof "2S6M_Tunguska")) then {
-			["fza_ah64_bt_tracking", 0.65] execvm "\fza_ah64_controls\scripting\damage\dam_bt_audio.sqf";
+		if !((_i iskindof "ZSU_Base") || (_i iskindof "2S6M_Tunguska")) then {
+			["fza_ah64_bt_tracking", 0.65] spawn fza_fnc_playAudio;
 		};
 		if (_heli getVariable "fza_ah64_aseautopage" == 1) then {
 			[_heli, 1, "ase"] call fza_fnc_mpdSetDisplay;

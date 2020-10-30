@@ -153,9 +153,9 @@ if(local _ac && !(player == driver _ac) || !(player == gunner _ac)) then
 	_range = _poshostile distance _posac;
 	_highlow = "High";
 	_chance1 = 200;
-	_rand = 5;
+	_rand = 4;
 
-	if(typeof _missile in fza_ah64_mis_ir) then {_rand = 6;};
+	if(typeof _missile in fza_ah64_mis_ir) then {_rand = 5;};
 	if(typeof _missile in fza_ah64_mis_rf) then {_rand = 4;};
 	if (floor random 10 < _rand) exitwith {};
 	waitUntil {_missile distance _ac < 200};	
