@@ -53,9 +53,7 @@ if (_posac select 2 > _poshostile select 2) then
 	_highlow = "Low";
 };
 
-_reldir = _ac call fza_fnc_relativeDirection;
-
-_theta = (360 + (_reldir - (direction _ac))) Mod 360;
+_theta = [_ac, (getpos _ac select 0), (getpos _ac select 1), (_poshostile select 0), (_poshostile select 1)] call fza_fnc_relativeDirection;
 _oclock = 12;
 
 if (_theta > 15 && _theta < 46) then
@@ -163,8 +161,7 @@ if(local _ac && !(player == driver _ac) || !(player == gunner _ac)) then
 	waitUntil {_missile distance _ac < 200};	
 	while {(alive _missile) && (alive _ac)} do
 	{
-		_reldir = _ac call fza_fnc_relativeDirection;
-		_mistheta = (360 + (_reldir - (direction _missile))) Mod 360;
+		_mistheta = [_ac, (getpos _ac select 0), (getpos _ac select 1), (_poshostile select 0), (_poshostile select 1)] call fza_fnc_relativeDirection;
 		_missile setdir (_mistheta - (random _chance1));
 		_pbvar = _missile call fza_fnc_getPitchBank;
 		_pitch = _pbvar select 0;
