@@ -21,28 +21,28 @@ if (_heli getVariable "fza_ah64_agmode" == 1) then {
 };
 
 private _targetsToDraw = fza_ah64_targetlist apply {
-	private _targicon = "gen";
+	private _targetType = "gen";
 	private _targetModifier = "";
 	private _targetPriority = 0;
 
 	if (_x isKindOf "helicopter") then {
-		_targicon = "hc";
+		_targetType = "hc";
 	};
 
 	if (_x isKindOf "plane") then {
-		_targicon = "ac";
+		_targetType = "ac";
 	};
 
 	if (_x isKindOf "tank") then {
-		_targicon = "tnk";
+		_targetType = "tnk";
 	};
 
 	if (_x isKindOf "car") then {
-		_targicon = "whl";
+		_targetType = "whl";
 	};
 
 	if ([_x] call fza_fnc_targetIsADA) then {
-		_targicon = "ada";
+		_targetType = "ada";
 	};
 
 	if (_x in ((_heli getVariable "fza_ah64_pfzs") select (_heli getVariable "fza_ah64_pfz_count"))) then {
@@ -53,7 +53,7 @@ private _targetsToDraw = fza_ah64_targetlist apply {
 		_targetPriority = 1;
 	};
 
-	private _targIcon = format ["\fza_ah64_US\tex\ICONS\ah64_%1%2.paa", _targicon, _targetModifier];
+	private _targIcon = format ["\fza_ah64_US\tex\ICONS\ah64_%1%2.paa", _targetType, _targetModifier];
 	if (_x in (_heli getVariable "fza_ah64_shotat_list")) then {
 		_targIcon = "\fza_ah64_US\tex\ICONS\ah64_shotat.paa";
 	};
