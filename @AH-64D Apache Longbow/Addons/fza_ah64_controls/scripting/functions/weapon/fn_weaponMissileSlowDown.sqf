@@ -18,7 +18,7 @@ if (_projectile isKindOf "fza_agm114k" || _projectile isKindOf "fza_fim92") then
 	};
 };
 
-
+_targ = fza_ah64_mycurrenttarget;
 _heli setVariable ["fza_ah64_shotat_list", (_heli getVariable "fza_ah64_shotat_list")+[_targ], true];
 _heli setVariable ["fza_ah64_shotmissile_list", (_heli getVariable "fza_ah64_shotmissile_list")+[_projectile], true];
 private _pfh = "fza_pfh_agm114_helper_" + str _projectile;
