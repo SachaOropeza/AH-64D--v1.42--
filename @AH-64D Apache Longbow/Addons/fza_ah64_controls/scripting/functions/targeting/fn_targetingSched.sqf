@@ -45,6 +45,22 @@ fza_ah64_dispfcrlist = ([_heli, fza_ah64_fcrlist] call fza_fnc_targetingFilterTy
     };
 };
 
+fza_ah64_Cscopelist = ([_heli, fza_ah64_targetlist] call fza_fnc_targetingFilterType) select {
+    _thetafcr = [_heli, (getposatl _heli select 0), (getposatl _heli select 1), (getposatl _x select 0), (getposatl _x select 1)] call fza_fnc_relativeDirection;
+
+    switch (_heli getVariable "fza_ah64_agmode") do {
+        case 0: {
+            !((getpos _x select 2 > 10) || (_thetafcr > 70 && _thetafcr < 290) || !(alive _x))
+        };
+        case 1: {
+            !((getpos _x select 2 < 10) || !(alive _i))
+        };
+        default {
+            true
+        };
+    };
+};
+
 _visibleTargets =
     if ([_heli, 1] call fza_fnc_mpdGetCurrentDisplay == "fcr") then {
         fza_ah64_dispfcrlist;

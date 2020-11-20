@@ -121,6 +121,7 @@ fza_ah64_pfz8 = [];
 fza_ah64_fcrlist = [];
 fza_ah64_tsdmap = 0;
 fza_ah64_dispfcrlist = [];
+fza_ah64_Cscopelist = [];
 fza_ah64_pnvsdir = 0;
 fza_ah64_pnvselev = 0.5;
 fza_ah64_pylonelev = 0;

@@ -769,9 +769,9 @@ if (_heli getVariable "fza_ah64_fcrcscope") then {
         ((uiNameSpace getVariable "fza_ah64_raddisp") displayCtrl _num) ctrlCommit 0;
         _num = _num + 1;
     }
-    foreach fza_ah64_dispfcrlist;
+    foreach fza_ah64_Cscopelist;
 
-    if (_num > (count fza_ah64_dispfcrlist + 189)) then {
+    if (_num > (count fza_ah64_Cscopelist + 189)) then {
         while {
             (_num < 206)
         }

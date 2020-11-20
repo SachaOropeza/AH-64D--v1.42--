@@ -102,7 +102,7 @@ class CfgAmmo
 		missileLockCone			= 90;
 		missileKeepLockedCone	= 90;
 		lockSeekRadius			= 2000;
-		autoSeekTarget 			= 1;
+		autoSeekTarget 			= 0;
 		weaponLockSystem		= "2 + 16";
 		maneuvDependsOnSpeedCoef = 0.018;
 
