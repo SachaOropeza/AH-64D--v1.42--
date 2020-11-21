@@ -36,7 +36,7 @@ Examples:
     ---
 
 Author:
-	Unknown, Lego Yoda
+	Unknown, AngusLogan02
 ---------------------------------------------------------------------------- */
 if (!(alive player) || !(vehicle player isKindOf "fza_ah64base")) exitwith {};
 _array = _this;
