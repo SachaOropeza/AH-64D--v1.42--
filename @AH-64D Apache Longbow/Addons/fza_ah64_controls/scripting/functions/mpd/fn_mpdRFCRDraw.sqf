@@ -20,7 +20,7 @@ if (_heli getVariable "fza_ah64_agmode" == 1) then {
 	_heli animate["mpd_pr_mpd_had_apos_h", (_heli animationphase "tads_tur")];
 };
 
-private _targetsToDraw = ([_heli, fza_ah64_targetlist] call fza_fnc_targetingFilterType) apply {
+private _targetsToDraw = ([_heli, fza_ah64_dispfcrlist] call fza_fnc_targetingFilterType) apply {
 	private _targetType = "gen";
 	private _targetModifier = "";
 	private _targetPriority = 0;
