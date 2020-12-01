@@ -20,7 +20,6 @@ Authors:
 ---------------------------------------------------------------------------- */
 params["_heli"];
 _tgt = cursorTarget;
-_theta = [_heli, (getpos _heli select 0), (getpos _heli select 1), (getpos _tgt select 0), (getpos _tgt select 1)] call fza_fnc_relativeDirection;
 
 if (player != gunner _heli) exitWith {};
 
@@ -33,6 +32,7 @@ if (_heli getVariable "fza_ah64_tadsLocked" == false && !isNull _tgt) then {
 };
 
 while {_heli getVariable "fza_ah64_tadsLocked" == true} do {
+	_theta = [_heli, (getpos _heli select 0), (getpos _heli select 1), (getpos _tgt select 0), (getpos _tgt select 1)] call fza_fnc_relativeDirection;
 	if ([_heli, "VIEW", _tgt] checkVisibility [eyePos player, getPosASL _tgt] == 0 || (_theta > 118 && _theta < 242)) then {
 		_heli lockCameraTo [objNull, [0]];
 		_heli setVariable["fza_ah64_tadsLocked", false, true];
