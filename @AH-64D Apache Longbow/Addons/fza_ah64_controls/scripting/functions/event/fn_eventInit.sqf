@@ -49,6 +49,7 @@ if !(_heli getVariable ["fza_ah64_aircraftInitialised", false]) then {
     _heli setVariable ["fza_ah64_tsdsort", 0, true];
     _heli setVariable ["fza_ah64_currentLase", objNull, true];
     _heli setVariable ["fza_ah64_currentSkippedLases", [], true];
+    _heli setVariable ["fza_ah64_tadsLocked", false, true];
 };
 _heli setVariable ["fza_ah64_irjstate", 0, true];
 _heli setVariable ["fza_ah64_rfjstate", 0, true];

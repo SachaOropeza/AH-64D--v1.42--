@@ -101,3 +101,7 @@
 [MOD_NAME, "toggleHeadtracking", "Toggle Head Tracking", {
 	ENSURE_IN_APACHE(fza_ah64_tiron = !fza_ah64_tiron;)
 }, {}, [USER_19, [false, false, false]]] call fza_fnc_addKeybind;
+
+[MOD_NAME, "lockCamToTgt", "Toggle Camera Lock to Point Target", {
+	[vehicle player] spawn fza_fnc_targetingLockCamToTarget;
+}, {}, [0x14, [false, true, false]]] call fza_fnc_addKeybind;
