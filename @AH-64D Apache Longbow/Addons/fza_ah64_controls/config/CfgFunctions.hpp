@@ -191,6 +191,7 @@ class CfgFunctions
 			class weaponRocketAlign {R;};
 			class weaponSelectFireMode {R;};
 			class weaponTurretAim {R;};
+			class weaponSubmunition {R;};
 		};
 		class functions
 		{
