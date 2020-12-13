@@ -1,6 +1,4 @@
-_ac = _this select 0;
-_munition = _this select 1;
-_hostile = _this select 2;
+params ["_heli","_munitons","_hostile"];
 
 if !(player == driver _ac) exitwith {};
 if(!(_munition isKindOf "missileBase") || !(isengineon _ac || (alive _ac))) exitwith {};
@@ -14,7 +12,7 @@ _hostile setVariable ["fza_ah64_shotCounter2", (_fza_ah64_incominghandled2 + 1) 
 if (_fza_ah64_incominghandled2 % 2 == 1) exitWith {};
 
 ////ASE PAGE LINK////
-waitUntil {((_ac getVariable "fza_ah64_irjstate" == 1 && (_ac getVariable "fza_ah64_aseautopage" == 2)) || (_ac getVariable "fza_ah64_irjon" == 1) || !(alive _missile))};
+waitUntil {((_ac getVariable "fza_ah64_irjstate" == 1) || (_ac getVariable "fza_ah64_irjon" == 1) || !(alive _missile))};
 if !(alive _missile) exitwith {};
 ////ASE PAGE LINK END////
 
