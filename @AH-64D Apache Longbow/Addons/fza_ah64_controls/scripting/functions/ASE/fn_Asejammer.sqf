@@ -1,4 +1,25 @@
-params ["_heli","_munitons","_hostile"];
+/* ----------------------------------------------------------------------------
+Function: fza_fnc_Asejammer
+
+Description:
+    Audio & text warning of direction of incoming missile
+    jamming of missile if ase page jammer active
+
+Parameters:
+    _heli - The helicopter that fired it
+    _munition - Missile
+    _hostile - is it hostile
+
+Returns:
+	
+
+Examples:
+
+Author:
+	ollieollieolllie
+---------------------------------------------------------------------------- */
+
+params ["_heli","_munition","_hostile"];
 _highlow = "Low";
 _theta = 0;
 _clockaud = "fza_ah64_bt_12oclock";
