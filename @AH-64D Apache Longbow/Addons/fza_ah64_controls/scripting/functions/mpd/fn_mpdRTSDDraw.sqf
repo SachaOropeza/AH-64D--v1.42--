@@ -58,6 +58,14 @@ if (_heli getVariable "fza_ah64_tsdmode" == "atk") then {
 		private _targetType = "gen";
 		private _targetModifier = "";
 		private _targetPriority = 0;
+		_adaunit = false;
+        _i = _x; {
+            if (_i iskindof _x) then {
+                _adaunit = true;
+            };
+        }
+        foreach fza_ah64_ada_units;
+		
 
 		if (_x isKindOf "helicopter") then {
 			_targetType = "hc";
@@ -75,7 +83,7 @@ if (_heli getVariable "fza_ah64_tsdmode" == "atk") then {
 			_targetType = "whl";
 		};
 
-		if ([_x] call fza_fnc_targetIsADA) then {
+	if (_adaunit) then {
 			_targetType = "ada";
 		};
 		if (_pfzs !=  0 && {_x in ((_heli getVariable "fza_ah64_pfzs") select (_pfzs - 1))}) then {

@@ -79,7 +79,7 @@
 }, {}, [USER_12, [false, false, false]]] call fza_fnc_addKeybind;
 
 [MOD_NAME, "jammersToggle", "Manual/Automatic Jammers Toggle", {
-	CALL_ENSURE_IN_APACHE(fza_fnc_controlHandleJammersToggle)
+	CALL_ENSURE_IN_APACHE(fza_fnc_controlHandleJammerToggle)
 }, {}, [USER_13, [false, false, false]]] call fza_fnc_addKeybind;
 
 [MOD_NAME, "aseAutopage", "ASE Autopage", {

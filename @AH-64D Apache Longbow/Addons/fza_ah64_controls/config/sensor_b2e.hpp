@@ -79,7 +79,37 @@ class Components: Components
         aimDown = 0;
         allowsMarking= 1;
       };
-
+      class IRSensorComponent: SensorTemplateIR {
+					class AirTarget {
+						minRange = -1;
+						maxRange = 8000;
+						objectDistanceLimitCoef = -1;
+						viewDistanceLimitCoef = 1;
+					};
+					class GroundTarget {
+						minRange = -1;
+						maxRange = 8000;
+						objectDistanceLimitCoef = 1;
+						viewDistanceLimitCoef = 1;
+					};
+					angleRangeHorizontal = 30;
+					angleRangeVertical = 30;
+					maxTrackableSpeed = 400;
+					componentType = "IRSensorComponent";
+					typeRecognitionDistance = -1;
+					maxFogSeeThrough = 0.995;
+					color[] = {1, 0, 0, 1};
+					allowsMarking = 1;
+					groundNoiseDistanceCoef = -1;
+					maxGroundNoiseDistance = -1;
+					minSpeedThreshold = 0;
+					maxSpeedThreshold = 0;
+					aimDown = 0;
+					minTrackableSpeed = -1e+010;
+					minTrackableATL = -1e+010;
+					maxTrackableATL = 1e+010;
+          animDirection = "mainTurret";
+				};
       class LaserSensorComponent: SensorTemplateLaser
       {
         componentType = "LaserSensorComponent";

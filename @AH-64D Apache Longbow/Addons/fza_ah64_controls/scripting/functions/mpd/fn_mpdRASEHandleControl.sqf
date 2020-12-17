@@ -42,4 +42,7 @@ switch(_control) do {
 	case "m": {
 		[_heli, 1, "dms"] call fza_fnc_mpdSetDisplay;
 	};
+	case "fcr": {
+		[_heli, 1, "fcr"] call fza_fnc_mpdSetDisplay;
+	};
 };

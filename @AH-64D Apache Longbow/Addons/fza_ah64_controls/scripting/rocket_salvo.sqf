@@ -1,4 +1,5 @@
-params["_heli"];
+// Disables to prevent bug were hellfires fire with salvo
+/*params["_heli"];
 
 _salvo = _heli getVariable "fza_ah64_rocketsalvo";
 _salvo = switch (_salvo) do {
