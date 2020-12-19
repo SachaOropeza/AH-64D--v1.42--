@@ -25,7 +25,7 @@ private _visibleTargets = [];
 fza_ah64_tsddisptargs = ([_heli, fza_ah64_targetlist] call fza_fnc_targetingFilterType) select {
     _theta = [_heli, (getposatl _heli select 0), (getposatl _heli select 1), (getposatl _x select 0), (getposatl _x select 1)] call fza_fnc_relativeDirection;
 
-    ! (((_heli getVariable "fza_ah64_agmode" == 1 && getpos _x select 2 < 10) || (_theta > 45 && _theta < 315) || (_heli getVariable "fza_ah64_agmode" == 0 && getpos _x select 2 > 10) || (((_heli distance _x) * (_heli getVariable "fza_ah64_rangesetting")) > 1) || !(alive _x)) ||
+    ! (((_heli getVariable "fza_ah64_agmode" == 1 && getpos _x select 2 < 10) || (_theta > 90 && _theta < 270) || (_heli getVariable "fza_ah64_agmode" == 0 && getpos _x select 2 > 10) || (((_heli distance _x) * (_heli getVariable "fza_ah64_rangesetting")) > 1) || !(alive _x)) ||
        ((((_heli distance _x) * (_heli getVariable "fza_ah64_rangesetting") > 0.2) && (_theta > 90 && _theta < 270)) || ((_heli distance _x) * (_heli getVariable "fza_ah64_rangesetting") > 1) || !(alive _x)))
 };
 
@@ -63,10 +63,10 @@ fza_ah64_Cscopelist = ([_heli, fza_ah64_targetlist] call fza_fnc_targetingFilter
 
 _visibleTargets =
     if ([_heli, 1] call fza_fnc_mpdGetCurrentDisplay == "fcr") then {
-        fza_ah64_dispfcrlist;
+        fza_ah64_dispfcrlist - alldead;
     } else {
         if (_heli getVariable "fza_ah64_pfz_count" == 0) then {
-            fza_ah64_targetlist;
+            fza_ah64_targetlist - alldead;
         }
         else {
             (_heli getVariable "fza_ah64_pfzs") select (_heli getVariable "fza_ah64_pfz_count") - 1;
