@@ -63,7 +63,7 @@ if (_weapon == "fza_m230" && (player == gunner _ah64 || local gunner _ah64 || is
 };
 
 //ROCKETS SALVOS
-
+/*
 if (player == gunner _ah64 || local gunner _ah64 || isNull gunner _ah64) then {
     _this spawn {
         params["_ah64", "_weapon", "_muzzle", "_mode", "_ammotype", "_missobj"];
@@ -89,4 +89,4 @@ if (player == gunner _ah64 || local gunner _ah64 || isNull gunner _ah64) then {
             fza_ah64_salvofired = 0;
         };
     };
-};
+};*/
