@@ -60,17 +60,21 @@ fza_ah64_Cscopelist = ([_heli, fza_ah64_targetlist] call fza_fnc_targetingFilter
         };
     };
 };
-
+//what gets targeted with lock next target
 _visibleTargets =
     if ([_heli, 1] call fza_fnc_mpdGetCurrentDisplay == "fcr") then {
         fza_ah64_dispfcrlist - alldead;
     } else {
-        if (_heli getVariable "fza_ah64_pfz_count" == 0) then {
-            fza_ah64_targetlist - alldead;
-        }
-        else {
-            (_heli getVariable "fza_ah64_pfzs") select (_heli getVariable "fza_ah64_pfz_count") - 1;
-        }
+        if ([_heli, 1] call fza_fnc_mpdGetCurrentDisplay == "tsd") then {
+        fza_ah64_tsddisptargs - alldead;
+        } else {
+            if (_heli getVariable "fza_ah64_pfz_count" == 0) then {
+                fza_ah64_targetlist - alldead;
+            }
+            else {
+                (_heli getVariable "fza_ah64_pfzs") select (_heli getVariable "fza_ah64_pfz_count") - 1;
+            }
+        };
     };
 
 if (count _visibleTargets == 0 && isNull fza_ah64_mycurrenttarget) then {
