@@ -66,7 +66,7 @@ _visibleTargets =
         fza_ah64_dispfcrlist - alldead;
     } else {
         if ([_heli, 1] call fza_fnc_mpdGetCurrentDisplay == "tsd") then {
-        fza_ah64_tsddisptargs - alldead;
+        fza_ah64_dispfcrlist - alldead;
         } else {
             if (_heli getVariable "fza_ah64_pfz_count" == 0) then {
                 fza_ah64_targetlist - alldead;
