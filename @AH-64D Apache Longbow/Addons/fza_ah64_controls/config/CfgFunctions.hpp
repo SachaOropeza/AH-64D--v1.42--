@@ -16,6 +16,7 @@ class CfgFunctions
 			class controlHandleCrosshairAction {R;};
 			class controlHandleIHADSSMode {R;};
 			class controlHandleJammerToggle {R;};
+			class controlHandlelasechange {R;};
 			class controlHandleLookCenter {R;};
 			class controlHandleNextWaypoint {R;};
 			class controlHandlePrevWaypoint {R;};

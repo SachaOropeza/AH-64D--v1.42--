@@ -98,6 +98,10 @@
 	CALL_ENSURE_IN_APACHE(fza_fnc_controlHandlePrevWaypoint)
 }, {}, [USER_17, [false, false, false]]] call fza_fnc_addKeybind;
 
+[MOD_NAME, "Self/remote laser", "Switch from self/remote lase", {
+	CALL_ENSURE_IN_APACHE(fza_fnc_controlHandlelasechange)
+}, {}, [user_20, [false, false, false]]] call fza_fnc_addKeybind;
+
 [MOD_NAME, "toggleHeadtracking", "Toggle Head Tracking", {
 	ENSURE_IN_APACHE(fza_ah64_tiron = !fza_ah64_tiron;)
 }, {}, [USER_19, [false, false, false]]] call fza_fnc_addKeybind;
