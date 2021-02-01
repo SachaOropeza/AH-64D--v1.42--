@@ -18,7 +18,7 @@ do {
         fza_ah64_asethreats = fza_ah64_asethreats - allDead; {
             if (_i iskindof _x) then {
                 fza_ah64_asethreats = fza_ah64_asethreats + [_i];
-                if ((_heli == assignedTarget _i || _i AimedAtTarget[_heli] > 0.5) && (alive _i) && !(_i in fza_ah64_threattracking)) then {
+                if ((_heli == assignedTarget _i || _i AimedAtTarget[_heli] > 0.1) && (alive _i) && !(_i in fza_ah64_threattracking)) then {
                     fza_ah64_threattracking = fza_ah64_threattracking + [_i];
                     if (_i iskindof "ZSU_Base") then {
                         ["fza_ah64_bt_zsu23", 2.3, "fza_ah64_bt_tracking", 0.65] spawn fza_fnc_playAudio;
