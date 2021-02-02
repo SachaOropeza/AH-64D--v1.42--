@@ -35,7 +35,7 @@ if !(_heli getVariable ["fza_ah64_aircraftInitialised", false]) then {
     _heli animate["cpg_firesw", 0.5];
     _heli animate["tads_stow", 1];
     _heli setVariable ["fza_ah64_estarted", false, true];
-    _heli setVariable ["fza_ah64_agmode", , true];
+    _heli setVariable ["fza_ah64_agmode", 0, true];
     _heli setVariable ["fza_ah64_pfzs", [[],[],[],[],[],[],[],[]], true];
     _heli setVariable ["fza_ah64_pfz_count", 0, true];
     _heli setVariable ["fza_ah64_curwpnum", 0, true];
