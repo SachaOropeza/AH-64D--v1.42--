@@ -94,7 +94,6 @@ private _lastSelection = if (driver _heli == player) then {SEL_MPD_PL_OBJ32} els
 private ["_sel", "_iconPrefix", "_iconSuffix", "_heading", "_distance", "_x", "_y"];
 private _seat = if (driver _heli == player) then {"pl"} else {"gr"};
 
-private _objects = fza_ah64_asethreats apply {
 fza_ah64_asethreatsdraw = fza_ah64_targetlist; {
 	_i = _x;
 	fza_ah64_asethreatsdraw = fza_ah64_asethreatsdraw - [_i];

@@ -45,7 +45,7 @@ if(!(_hostile in fza_ah64_threatfiring)) then {fza_ah64_threatfiring = fza_ah64_
 if (_heli getVariable "fza_ah64_aseautopage" == 2) then {
         [_heli, 1, "ase"] call fza_fnc_mpdSetDisplay;
     };
-
+	
 if(typeOf _heli == "fza_ah64d_b2e" || typeOf _heli == "fza_ah64d_b2exp" || typeOf _heli == "fza_ah64d_b3") then
 {
 	{
@@ -137,7 +137,6 @@ if (_theta > 315 && _theta < 346) then
 	_clockaud = "fza_ah64_bt_11oclock";
 };
 
-
 if (_range < 8000) then {
 	_heli vehiclechat format ["Missile %1 OClock %2 %3 Meters",_oclock,_highlow,_range];
 	_bthlsound = "fza_ah64_bt_" + _highlow;
@@ -146,7 +145,6 @@ if (_range < 8000) then {
 	};
 };
 
-fza_ah64_threatfiring = fza_ah64_threatfiring - [_hostile];
 if (_heli getVariable "fza_ah64_rfjstate" == 1) then {_heli setVariable ["fza_ah64_rfjon", 0, true];};
 if (_heli getVariable "fza_ah64_irjstate" == 1) then {_heli setVariable ["fza_ah64_irjon", 0, true];};
 
@@ -186,5 +184,5 @@ if(local _heli && !(player == driver _heli) || !(player == gunner _heli)) then
 	_hostile setVariable ["fza_ah64_shotCounter", 0];*/
 };
 
-sleep 15;
-fza_ah64_threatfiring = fza_ah64_threatfiring - [_hostile]
+sleep 20;
+fza_ah64_threatfiring = fza_ah64_threatfiring - [_hostile];
