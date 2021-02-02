@@ -1,4 +1,4 @@
-// Disables to prevent bug were hellfires fire with salvo
+// Disables to reduce script running of disabled function
 /*params["_heli"];
 
 _salvo = _heli getVariable "fza_ah64_rocketsalvo";

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: fza_fnc_controlHandlelasechange
+Function: fza_fnc_controlHandlelaserchange
 
 Description:
 	Switches the helicopter's HMD between the different modes.

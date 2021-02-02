@@ -16,7 +16,7 @@ class CfgFunctions
 			class controlHandleCrosshairAction {R;};
 			class controlHandleIHADSSMode {R;};
 			class controlHandleJammerToggle {R;};
-			class controlHandlelasechange {R;};
+			class controlHandlelaserchange {R;};
 			class controlHandleLookCenter {R;};
 			class controlHandleNextWaypoint {R;};
 			class controlHandlePrevWaypoint {R;};
@@ -208,11 +208,11 @@ class CfgFunctions
 			class playAudio { R; description = "Plays audio file"; };
 			class compensateSafezone { R;};
 		};
-		class Ase
+		class ase
 		{
 			file = "\fza_ah64_controls\scripting\functions\ase";
-			class Asejammer {R;};
-			class Aseflaredeploy {R;};
+			class asejammer {R;};
+			class aseflaredeploy {R;};
 		};
 	};
 };

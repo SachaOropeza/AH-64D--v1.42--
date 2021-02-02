@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: fza_fnc_Asejammer
+Function: fza_fnc_asejammer
 
 Description:
     Audio & text warning of direction of incoming missile

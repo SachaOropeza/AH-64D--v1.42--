@@ -99,7 +99,7 @@
 }, {}, [USER_17, [false, false, false]]] call fza_fnc_addKeybind;
 
 [MOD_NAME, "Self/remote laser", "Switch from self/remote lase", {
-	CALL_ENSURE_IN_APACHE(fza_fnc_controlHandlelasechange)
+	CALL_ENSURE_IN_APACHE(fza_fnc_controlHandlelaserchange)
 }, {}, [user_20, [false, false, false]]] call fza_fnc_addKeybind;
 
 [MOD_NAME, "toggleHeadtracking", "Toggle Head Tracking", {
