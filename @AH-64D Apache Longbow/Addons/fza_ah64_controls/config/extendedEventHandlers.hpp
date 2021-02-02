@@ -55,7 +55,7 @@ class Extended_handleDamage_EventHandlers {
 class Extended_Killed_EventHandlers {
 	class fza_ah64base {
 		class fza_ah64base_killed_eh {
-			killed = "_this call BIS_Effects_EH_Killed;";
+			killed = "_this call fza_fnc_eventGetOut; _this call BIS_Effects_EH_Killed;";
 		};
 	};
 };
