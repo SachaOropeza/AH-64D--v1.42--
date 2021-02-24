@@ -11,7 +11,7 @@ Examples:
     [_heli] call fza_fnc_targetingUpdate
 	---
 Author:
-	Unknown
+	Ollieollieolllie
 ---------------------------------------------------------------------------- */
 params ["_heli"];
 fza_ah64_asethreats = vehicles - alldead;

@@ -2,10 +2,10 @@
 Function: fza_fnc_controlHandlelaserchange
 
 Description:
-	Switches the helicopter's HMD between the different modes.
+	Switches the helicopter's Between self/remote laser aquistion.
 
 Parameters:
-	_heli - The apache helicopter to change the autopage setting for.
+	_heli - The apache helicopter to change the setting for.
 
 Returns:
 	Nothing
@@ -16,9 +16,8 @@ Examples:
 	---
 
 Author:
-	Unknown
+	ollieollieolllie
 ---------------------------------------------------------------------------- */
-//Switch missile lase
 params ["_heli"];
 
 _lases = ((listRemoteTargets west) apply {_x # 0}) select {_x isKindOf "LaserTargetBase"};

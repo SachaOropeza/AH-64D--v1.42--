@@ -207,13 +207,13 @@ class CfgFunctions
 			class addKeybind {R;};
 			class playAudio { R; description = "Plays audio file"; };
 			class compensateSafezone { R;};
-			class targetisada {R;}
+			class targetisADA {R;}
 		};
 		class ase
 		{
 			file = "\fza_ah64_controls\scripting\functions\ase";
-			class asejammer {R;};
-			class aseflaredeploy {R;};
+			class aseJammer {R;};
+			class aseFlaredeploy {R;};
 		};
 	};
 };

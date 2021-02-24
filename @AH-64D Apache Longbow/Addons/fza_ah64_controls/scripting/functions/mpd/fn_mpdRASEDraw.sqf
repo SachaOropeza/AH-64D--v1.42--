@@ -18,7 +18,7 @@ _heli setobjecttexture [SEL_MPD_PR_ASE_CSEL, "\fza_ah64_us\tex\mpd\chaff.paa"];
 _flareCount = 0;
 {
 	_x params ["_className", "_turretPath", "_ammoCount"];
-	if (_className == "192Rnd_CMFlareMagazine" && _turretPath isEqualTo [-1]) then {
+	if (_className == "60Rnd_CMFlareMagazine" && _turretPath isEqualTo [-1]) then {
 		_flareCount = _flareCount + _ammoCount;
 	};
 } forEach magazinesAllTurrets _heli;

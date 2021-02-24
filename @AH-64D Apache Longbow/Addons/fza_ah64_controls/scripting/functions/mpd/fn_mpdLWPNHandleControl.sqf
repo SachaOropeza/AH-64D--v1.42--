@@ -33,7 +33,7 @@ if(currentweapon _heli in _hellfireweps) then {
 	switch (_control) do {
 		case "l1": {
 			//Switch missile lase
-			[_heli] spawn fza_fnc_controlHandlelaserchange;
+			[_heli] call fza_fnc_controlHandlelaserchange;
 		};
 		case "r3": {
 			//Switch missile trajectory of current hellfire
