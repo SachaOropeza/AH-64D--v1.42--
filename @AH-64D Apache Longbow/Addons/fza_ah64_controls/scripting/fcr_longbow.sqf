@@ -69,7 +69,7 @@ do {
                 };
 
                 //If what is detected isn't any of the items below, remove it from the list...
-                if (!(_i isKindOf "helicopter" || _i isKindOf "plane" || _i isKindOf "car" || _i isKindOf "tank" || _i isKindOf "ship" || _i isKindOf "StaticCannon" || _adaunit)) then {
+                if (!(_i isKindOf "helicopter" || _i isKindOf "plane" || _i isKindOf "car" || _i isKindOf "tank" || _i isKindOf "ship" || _i isKindOf "Staticweapon" || _adaunit)) then {
                     _targetArray = _targetArray - [_i];
                     _rem = true;
                 };

@@ -137,7 +137,7 @@ fza_ah64_mapfaker = addMissionEventHandler["Draw3D", {
 fza_ah64_ada_units = ["vme_PLA_DK9","VME_PLA_HQ64","VME_PLA_HQ7","VME_PLA_PGZ04","VME_PLA_EQ2050_AA","RHS_Stinger_AA_pod_Base","SAM_System_01_base_F","SAM_System_03_base_F",
 "Radar_System_01_base_F","SAM_System_02_base_F","AAA_System_01_base_F","RHS_ZU23_base","rhs_Igla_AA_pod_Base","AA_01_base_F","Radar_System_02_base_F","SAM_System_04_base_F",
 "RR_PGZ_04_ADS_SP_AA","VME_PLA_ADS_Base","I_LT_01_scout_F","I_LT_01_AA_F","O_APC_Tracked_02_AA_F","O_T_APC_Tracked_02_AA_ghex_F","rhs_zsutank_base","LOP_ZSU234_base",
-"B_APC_Tracked_01_AA_F","B_T_APC_Tracked_01_AA_F"];
+"B_APC_Tracked_01_AA_F","B_T_APC_Tracked_01_AA_F","RHS_Ural_Zu23_Base","UK3CB_MTLB_Zu23","UK3CB_V3S_Zu23","UK3CB_Hilux_ZU23","LT_01_scout_base_F"];
 
 
 //EXPERIMENTAL - RUN ONCE FOR PLAYER ONLY

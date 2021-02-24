@@ -32,6 +32,9 @@ if (player == driver _heli || player == gunner _heli) then {
 if (!(alive _heli)) exitwith {
     false
 };
+//set damage so event init dosent reset
+_damheli= 0.001 + damage _heli;
+_heli setDamage _damheli;
 
 if (_system == "mala vrtule") then {
     if (_damage > 0.4 && _damage < 0.8 && !("fza_ah64_tailrotor_dam" in _mags)) then {
@@ -97,7 +100,7 @@ if (_system == "otochlaven") then {
     if (_damage >= 0.8 && !("fza_ah64_gun_jam" in _mags)) then {
         _heli addmagazineturret["fza_ah64_gun_jam", [-1]];
         _heli removemagazine "fza_m230_1200";
-        _heli removemagazine "fza_m230_350";
+        _heli removemagazine "fza_m230_300";
         if (_usesound) then {
             ["fza_ah64_bt_gun", 0.5, "fza_ah64_bt_jammed", 1] spawn fza_fnc_playAudio;
         };
