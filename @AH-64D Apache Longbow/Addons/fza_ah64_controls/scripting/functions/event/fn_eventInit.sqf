@@ -49,24 +49,25 @@ if !(_heli getVariable ["fza_ah64_aircraftInitialised", false]) then {
     _heli setVariable ["fza_ah64_tsdsort", 0, true];
     _heli setVariable ["fza_ah64_currentLase", objNull, true];
     _heli setVariable ["fza_ah64_currentSkippedLases", [], true];
+    _heli setVariable ["fza_ah64_irjstate", 0, true];
+    _heli setVariable ["fza_ah64_rfjstate", 0, true];
+    _heli setVariable ["fza_ah64_irjon", 0, true];
+    _heli setVariable ["fza_ah64_rfjon", 0, true];
+    _heli setVariable ["fza_ah64_aseautopage", 0];
+    _heli setVariable ["fza_ah64_mpdPage", ["OFF", "OFF"]];
+    _heli setVariable ["fza_ah64_mpdCurrPage", ["OFF", "OFF"]];
+    _heli setVariable ["fza_ah64_burst_limit", 10];
+    _heli setVariable ["fza_ah64_fcrcscope", false];
+    _heli setVariable ["fza_ah64_ihadssoff", 1];
+    _heli setVariable ["fza_ah64_ihadss_pnvs_cam", false];
+    _heli setVariable ["fza_ah64_ihadss_pnvs_day", true];
+    _heli setVariable ["fza_ah64_monocleinbox", true];
+    _heli setVariable ["fza_ah64_mpdbrightness", 1];
+    _heli setVariable ["fza_ah64_rangesetting", 0.001]; //1km
+    _heli setVariable ["fza_ah64_rocketsalvo", 1];
+    _heli setVariable ["fza_ah64_tsdmode", "nav"];
 };
-_heli setVariable ["fza_ah64_irjstate", 0, true];
-_heli setVariable ["fza_ah64_rfjstate", 0, true];
-_heli setVariable ["fza_ah64_irjon", 0, true];
-_heli setVariable ["fza_ah64_rfjon", 0, true];
-_heli setVariable ["fza_ah64_aseautopage", 0];
-_heli setVariable ["fza_ah64_mpdPage", ["OFF", "OFF"]];
-_heli setVariable ["fza_ah64_mpdCurrPage", ["OFF", "OFF"]];
-_heli setVariable ["fza_ah64_burst_limit", 10];
-_heli setVariable ["fza_ah64_fcrcscope", false];
-_heli setVariable ["fza_ah64_ihadssoff", 1];
-_heli setVariable ["fza_ah64_ihadss_pnvs_cam", false];
-_heli setVariable ["fza_ah64_ihadss_pnvs_day", true];
-_heli setVariable ["fza_ah64_monocleinbox", true];
-_heli setVariable ["fza_ah64_mpdbrightness", 1];
-_heli setVariable ["fza_ah64_rangesetting", 0.001]; //1km
-_heli setVariable ["fza_ah64_rocketsalvo", 1];
-_heli setVariable ["fza_ah64_tsdmode", "nav"];
+
 
 [_heli] call fza_fnc_engineInit;
 
@@ -167,7 +168,7 @@ do {
         _skinset = 0;
     };
 
-    if (damage _heli < 0.001) then {
+    if (damage _heli < 0.0001) then {
         //////light//////
         _heli setobjecttexture [SEL_DAM_FUSE, ""];
         _heli setobjecttexture [SEL_DAM_GDOOR, ""];

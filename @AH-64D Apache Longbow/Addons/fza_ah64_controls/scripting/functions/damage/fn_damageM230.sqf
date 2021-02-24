@@ -88,6 +88,6 @@ _rand = random _heatfactor;
 if (_rand > _heatchance) then {
     ["fza_ah64_bt_gun", 0.5, "fza_ah64_bt_jammed", 1] spawn fza_fnc_playAudio;
     _heli removemagazine "fza_m230_1200";
-    _heli removemagazine "fza_m230_350";
+    _heli removemagazine "fza_m230_300";
     _heli addmagazine "fza_ah64_gun_jam";
 };

@@ -18,12 +18,12 @@ _heli setobjecttexture [SEL_MPD_PR_ASE_CSEL, "\fza_ah64_us\tex\mpd\chaff.paa"];
 _flareCount = 0;
 {
 	_x params ["_className", "_turretPath", "_ammoCount"];
-	if (_className == "60Rnd_CMFlareMagazine" && _turretPath isEqualTo [-1]) then {
+	if (_className == "192Rnd_CMFlareMagazine" && _turretPath isEqualTo [-1]) then {
 		_flareCount = _flareCount + _ammoCount;
 	};
 } forEach magazinesAllTurrets _heli;
 
-[_heli, _flareCount, "\fza_ah64_us\tex\char\g", SEL_DIGITS_MPD_PR_ASE_CC] call fza_fnc_drawNumberSelections;
+[_heli, _flareCount/2, "\fza_ah64_us\tex\char\g", SEL_DIGITS_MPD_PR_ASE_CC] call fza_fnc_drawNumberSelections;
 
 _heli setobjecttexture [SEL_MPD_PR_ASE_CSEL, ""];
 
@@ -114,10 +114,10 @@ private _objects = fza_ah64_asethreatsdraw apply {
 	private _iconsuffix = "D.paa";
 	private _priority = 0;
 
-	if (_x iskindof "ZSU_Base") then {
+	if (_x iskindof "rhs_zsutank_base") then {
 		_iconformat = "\fza_ah64_US\tex\ICONS\23";
 	};
-	if (_x iskindof "2S6M_Tunguska") then {
+	if (_x iskindof "O_APC_Tracked_02_AA_F") then {
 		_iconformat = "\fza_ah64_US\tex\ICONS\19";
 	};
 
