@@ -142,6 +142,5 @@ fza_ah64_ada_units = ["vme_PLA_DK9","VME_PLA_HQ64","VME_PLA_HQ7","VME_PLA_PGZ04"
 
 //EXPERIMENTAL - RUN ONCE FOR PLAYER ONLY
 
-_asetracker = [player] execvm "\fza_ah64_controls\scripting\page_ase.sqf";
 _ufdtracker = [player] execvm "\fza_ah64_controls\scripting\ufd.sqf";
 _targetscanner = [] execvm "\fza_ah64_controls\scripting\fcr_longbow.sqf";

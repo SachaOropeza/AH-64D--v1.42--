@@ -207,6 +207,7 @@ class CfgFunctions
 			class addKeybind {R;};
 			class playAudio { R; description = "Plays audio file"; };
 			class compensateSafezone { R;};
+			class targetisada {R;}
 		};
 		class ase
 		{
