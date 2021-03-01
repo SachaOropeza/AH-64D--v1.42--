@@ -18,6 +18,6 @@ Examples:
     (end)
 
 Author:
-    mattysmith22, ollieollieollie
+    mattysmith22, ollieollieolllie
 ---------------------------------------------------------------------------- */
 [_this # 0 - safeZoneX, _this # 1 - safeZoneY];

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: fza_fnc_asejammer
+Function: fza_fnc_Asejammer
 
 Description:
     Audio & text warning of direction of incoming missile
@@ -11,10 +11,11 @@ Parameters:
     _hostile - is it hostile
 
 Returns:
+	Nothing
 	
-
 Examples:
-
+	_this spawn fza_fnc_Asejammer;
+	
 Author:
 	ollieollieolllie
 ---------------------------------------------------------------------------- */
@@ -53,12 +54,10 @@ if(typeOf _heli == "fza_ah64d_b2e" || typeOf _heli == "fza_ah64d_b2exp" || typeO
 	} foreach fza_ah64_ada_units;
 };
 
+//OPER Auto control
 {
     if (_hostile iskindof _x && _heli getVariable "fza_ah64_rfjstate" == 1 && _heli getVariable "fza_ah64_rfjon" == 0 ) then {
-        _rfjammerscript = [_heli] execvm "\fza_ah64_controls\scripting\rf_jammer.sqf";
-    };
-    if (_hostile iskindof _x && _heli getVariable "fza_ah64_irjstate" == 1 && _heli getVariable "fza_ah64_irjon" == 0 ) then {
-        _irjammerscript = [_heli] execvm "\fza_ah64_controls\scripting\ir_jammer.sqf";
+        _rfjammerscript = _this spawn fza_fnc_aseHandleRfcontrol;
     };
 }
 foreach fza_ah64_ada_units;
@@ -145,9 +144,6 @@ if (_range < 8000) then {
 	};
 };
 
-if (_heli getVariable "fza_ah64_rfjstate" == 1) then {_heli setVariable ["fza_ah64_rfjon", 0, true];};
-if (_heli getVariable "fza_ah64_irjstate" == 1) then {_heli setVariable ["fza_ah64_irjon", 0, true];};
-
 if(local _heli && !(player == driver _heli) || !(player == gunner _heli)) then
 {
 	_missile = nearestobject [_hostile,_munition];
@@ -184,5 +180,9 @@ if(local _heli && !(player == driver _heli) || !(player == gunner _heli)) then
 	_hostile setVariable ["fza_ah64_shotCounter", 0];*/
 };
 
-sleep 20;
+//kill jammer after script
+if (_heli getVariable "fza_ah64_rfjstate" == 1) then {_heli setVariable ["fza_ah64_rfjon", 0, true];};
+
+
+sleep 15;
 fza_ah64_threatfiring = fza_ah64_threatfiring - [_hostile];

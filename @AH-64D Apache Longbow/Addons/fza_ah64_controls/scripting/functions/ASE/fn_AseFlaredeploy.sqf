@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: fza_fnc_aseflaredeploy
+Function: fza_fnc_AseFlaredeploy
 
 Description:
     deploys flare if ir jam enables on ase
@@ -10,9 +10,10 @@ Parameters:
     _hostile - is it hostile
 
 Returns:
-	
+    Nothing
 
 Examples:
+    _this spawn fza_fnc_AseFlaredeploy;
 
 Author:
 	ollieollieolllie
@@ -25,11 +26,18 @@ if(!(_munition isKindOf "missileBase") || !(isengineon _heli || (alive _heli))) 
 
 _missile = nearestobject [_hostile,_munition];
 
+//OPER Auto control
+{
+    if (_hostile iskindof _x && _heli getVariable "fza_ah64_irjstate" == 1 && _heli getVariable "fza_ah64_irjon" == 0 ) then {
+        _irjammerscript = _this spawn fza_fnc_aseHandleIrcontrol;
+    };
+}
+foreach fza_ah64_ada_units;
 
 ////Reduces the missiles 2 cores to 1 activation
-_fza_ah64_incominghandled = _hostile getVariable ["fza_ah64_shotCounter", 0];
-_hostile setVariable ["fza_ah64_shotCounter", (_fza_ah64_incominghandled + 1) % 2];
-if (_fza_ah64_incominghandled % 2 == 1) exitWith {};
+_fza_ah64_incominghandled2 = _hostile getVariable ["fza_ah64_shotCounter2", 0];
+_hostile setVariable ["fza_ah64_shotCounter2", (_fza_ah64_incominghandled2 + 1) % 2];
+if (_fza_ah64_incominghandled2 % 2 == 1) exitWith {};
 
 ////ASE PAGE LINK////
 waitUntil {((_heli getVariable "fza_ah64_irjstate" == 1) || (_heli getVariable "fza_ah64_irjon" == 1) || !(alive _missile))};
@@ -42,8 +50,14 @@ sleep 1;
 [vehicle player, "fza_CMFlareLauncher", [-1]] call BIS_fnc_fire;
 
 _flarecount = 0;
-while {(_flarecount < 3) && (alive _heli)} do {
+while {(_flarecount < 3) && (alive _heli) && (_heli getVariable "fza_ah64_irjstate" == 1)} do {
 	sleep 4;
 	[vehicle player, "fza_CMFlareLauncher", [-1]] call BIS_fnc_fire;
 	_flarecount = _flarecount + 1;
 };
+
+//kill jammer after script
+if (_heli getVariable "fza_ah64_irjstate" == 1) then {_heli setVariable ["fza_ah64_irjon", 0, true];};
+
+sleep 15;
+fza_ah64_threatfiring = fza_ah64_threatfiring - [_hostile];

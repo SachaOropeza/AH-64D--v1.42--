@@ -214,6 +214,8 @@ class CfgFunctions
 			file = "\fza_ah64_controls\scripting\functions\ase";
 			class aseJammer {R;};
 			class aseFlaredeploy {R;};
+			class aseHandleRfcontrol {R;};
+			class aseHandleIrcontrol {R;};
 		};
 	};
 };
