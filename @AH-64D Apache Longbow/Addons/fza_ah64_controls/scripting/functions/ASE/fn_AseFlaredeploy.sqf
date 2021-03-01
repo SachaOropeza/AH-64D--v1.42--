@@ -8,13 +8,14 @@ Parameters:
     _heli - The helicopter that fired it
     _munition - Missile
     _hostile - is it hostile
-
+    
 Returns:
     Nothing
 
 Examples:
     _this spawn fza_fnc_AseFlaredeploy;
-
+	
+Examples:
 Author:
 	ollieollieolllie
 ---------------------------------------------------------------------------- */

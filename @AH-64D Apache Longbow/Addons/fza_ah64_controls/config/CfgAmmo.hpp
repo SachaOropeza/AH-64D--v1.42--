@@ -214,7 +214,7 @@ class CfgAmmo
 		missileLockCone = 40;
 		missileKeepLockedCone = 40;
 		missileManualControlCone = 40;
-		weaponLockSystem = "4 + 16"
+		weaponLockSystem = "4 + 16";
 		weaponType = "missileAA";
 		class Components : Components
 		{

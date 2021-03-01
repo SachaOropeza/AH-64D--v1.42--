@@ -1,6 +1,5 @@
 /* ----------------------------------------------------------------------------
 Function: fza_fnc_Asejammer
-
 Description:
     Audio & text warning of direction of incoming missile
     jamming of missile if ase page jammer active
@@ -9,7 +8,7 @@ Parameters:
     _heli - The helicopter that fired it
     _munition - Missile
     _hostile - is it hostile
-
+	
 Returns:
 	Nothing
 	
