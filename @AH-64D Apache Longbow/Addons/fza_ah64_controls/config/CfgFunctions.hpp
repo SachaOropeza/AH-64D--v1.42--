@@ -16,6 +16,7 @@ class CfgFunctions
 			class controlHandleCrosshairAction {R;};
 			class controlHandleIHADSSMode {R;};
 			class controlHandleJammerToggle {R;};
+			class controlHandlelaserchange {R;};
 			class controlHandleLookCenter {R;};
 			class controlHandleNextWaypoint {R;};
 			class controlHandlePrevWaypoint {R;};
@@ -191,6 +192,7 @@ class CfgFunctions
 			class weaponRocketAlign {R;};
 			class weaponSelectFireMode {R;};
 			class weaponTurretAim {R;};
+			class weaponSubmunition {R;};
 		};
 		class functions
 		{
@@ -205,6 +207,15 @@ class CfgFunctions
 			class addKeybind {R;};
 			class playAudio { R; description = "Plays audio file"; };
 			class compensateSafezone { R;};
+			class targetisADA {R;}
+		};
+		class ase
+		{
+			file = "\fza_ah64_controls\scripting\functions\ase";
+			class aseJammer {R;};
+			class aseFlaredeploy {R;};
+			class aseHandleRfcontrol {R;};
+			class aseHandleIrcontrol {R;};
 		};
 	};
 };

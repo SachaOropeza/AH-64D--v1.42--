@@ -150,7 +150,7 @@ do {
         if ("fza_ah64_gun_jam" in _mags && _gundam == 0) then {
             _gundam = 1;
             _heli removemagazine "fza_m230_1200";
-            _heli removemagazine "fza_m230_350";
+            _heli removemagazine "fza_m230_300";
         } else {
             _gundam = 1;
         };

@@ -23,7 +23,7 @@ _flareCount = 0;
 	};
 } forEach magazinesAllTurrets _heli;
 
-[_heli, _flareCount, "\fza_ah64_us\tex\char\g", SEL_DIGITS_MPD_PR_ASE_CC] call fza_fnc_drawNumberSelections;
+[_heli, _flareCount/2, "\fza_ah64_us\tex\char\g", SEL_DIGITS_MPD_PR_ASE_CC] call fza_fnc_drawNumberSelections;
 
 _heli setobjecttexture [SEL_MPD_PR_ASE_CSEL, ""];
 
@@ -94,19 +94,34 @@ private _lastSelection = if (driver _heli == player) then {SEL_MPD_PL_OBJ32} els
 private ["_sel", "_iconPrefix", "_iconSuffix", "_heading", "_distance", "_x", "_y"];
 private _seat = if (driver _heli == player) then {"pl"} else {"gr"};
 
-private _objects = fza_ah64_asethreats apply {
+fza_ah64_asethreatsdraw = fza_ah64_targetlist; {
+	_i = _x;
+	fza_ah64_asethreatsdraw = fza_ah64_asethreatsdraw - [_i];
+	fza_ah64_asethreatsdraw = fza_ah64_asethreatsdraw - allDead; {
+		if (_i iskindof _x) then {
+			fza_ah64_asethreatsdraw = fza_ah64_asethreatsdraw + [_i];
+		};
+	}
+	foreach fza_ah64_ada_units;
+	if (side _i == side _heli) then {
+		fza_ah64_asethreatsdraw = fza_ah64_asethreatsdraw - [_i];
+	};
+}
+foreach fza_ah64_asethreatsdraw;
+
+private _objects = fza_ah64_asethreatsdraw apply {
 	private _iconformat = "\fza_ah64_US\tex\ICONS\U";
 	private _iconsuffix = "D.paa";
 	private _priority = 0;
 
-	if (_x iskindof "ZSU_Base") then {
+	if (_x iskindof "rhs_zsutank_base") then {
 		_iconformat = "\fza_ah64_US\tex\ICONS\23";
 	};
-	if (_x iskindof "2S6M_Tunguska") then {
+	if (_x iskindof "O_APC_Tracked_02_AA_F") then {
 		_iconformat = "\fza_ah64_US\tex\ICONS\19";
 	};
 
-	if (_heli == assignedTarget _x || _x AimedAtTarget[_heli] > 0.5) then {
+	if (_heli == assignedTarget _x || _x AimedAtTarget[_heli] > 0.1) then {
 		_iconsuffix = "T.paa";
 	};
 	if (_x in fza_ah64_threatfiring) then {

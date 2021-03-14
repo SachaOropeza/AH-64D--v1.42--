@@ -26,7 +26,7 @@ params ["_heli", "_system", "_control"];
 
 switch (_control) do {
 	case "floodlight": {
-		if ((!isNull (_heli getVariable["fza_ah64_floodlight_cpg", objNull]) || (!isNull (_heli getVariable["fza_ah64_floodlight_plt", objNull]))) && _heli animationphase "plt_batt" > 0.5) then {
+		if ((isNull (_heli getVariable["fza_ah64_floodlight_plt", objNull])) && _heli animationphase "plt_batt" > 0.5) then {
 			_heli setobjecttexture [SEL_IN_BACKLIGHT, "\fza_ah64_us\tex\in\dlt.paa"];
 			_heli setobjecttexture [SEL_IN_BACKLIGHT2, "\fza_ah64_us\tex\in\pushbut.paa"];
 

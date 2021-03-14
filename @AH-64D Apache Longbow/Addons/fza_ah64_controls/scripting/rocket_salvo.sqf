@@ -1,4 +1,5 @@
-params["_heli"];
+// Disables to reduce script running of disabled function
+/*params["_heli"];
 
 _salvo = _heli getVariable "fza_ah64_rocketsalvo";
 _salvo = switch (_salvo) do {

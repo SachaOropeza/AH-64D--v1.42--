@@ -1,40 +1,62 @@
-_ac = _this select 0;
-_munition = _this select 1;
-_hostile = _this select 2;
+/* ----------------------------------------------------------------------------
+Function: fza_fnc_aseJammer
+Description:
+    Audio & text warning of direction of incoming missile
+    jamming of missile if ase page jammer active
+
+Parameters:
+    _heli - The helicopter that fired it
+    _munition - Missile
+    _hostile - is it hostile
+	
+Returns:
+	Nothing
+	
+Examples:
+	_this spawn fza_fnc_aseJammer;
+	
+Author:
+	ollieollieolllie
+---------------------------------------------------------------------------- */
+
+params ["_heli","_munition","_hostile"];
 _highlow = "Low";
 _theta = 0;
 _clockaud = "fza_ah64_bt_12oclock";
 _usesound = false;
 _mistheta = 0;
 
-if(player == driver _ac || player == gunner _ac) then {_usesound = true;};
+if(player == driver _heli || player == gunner _heli) then {_usesound = true;};
 
-if(!(_munition isKindOf "missileBase") || !(isengineon _ac || (alive _ac))) exitwith {};
+if(!(_munition isKindOf "missileBase") || !(isengineon _heli || (alive _heli))) exitwith {};
 
 _missile = nearestobject [_hostile,_munition];
-_posac = getpos _ac;
+_posac = getpos _heli;
 _poshostile = getpos _missile;
 _range = _poshostile distance _posac;
 _highlow = "High";
 
 ////Reduces the missiles 2 cores to 1 activation
-_fza_ah64_incominghandled = _hostile getVariable ["fza_ah64_shotCounter", 0];
-_hostile setVariable ["fza_ah64_shotCounter", (_fza_ah64_incominghandled + 1) % 2];
-if (_fza_ah64_incominghandled % 2 == 1) exitWith {};
+_counter = _hostile getVariable ["fza_ah64_shotCounter", 0];
+_hostile setVariable ["fza_ah64_shotCounter", (_counter + 1) % 2];
+if (_counter % 2 == 1) exitWith {};
 
-if(typeOf _ac == "fza_ah64d_b2e" || typeOf _ac == "fza_ah64d_b2exp" || typeOf _ac == "fza_ah64d_b3") then
+if(!(_hostile in fza_ah64_threatfiring)) then {fza_ah64_threatfiring = fza_ah64_threatfiring + [_hostile];};
+if (_heli getVariable "fza_ah64_aseautopage" == 2) then {
+        [_heli, 1, "ase"] call fza_fnc_mpdSetDisplay;
+    };
+	
+if(typeOf _heli == "fza_ah64d_b2e" || typeOf _heli == "fza_ah64d_b2exp" || typeOf _heli == "fza_ah64d_b3") then
 {
 	{
 		if (_hostile iskindof _x && !(_hostile in fza_ah64_targetlist)) then {fza_ah64_targetlist = fza_ah64_targetlist + [_hostile];};
 	} foreach fza_ah64_ada_units;
 };
 
+//OPER Auto control
 {
-    if (_hostile iskindof _x && _ac getVariable "fza_ah64_rfjstate" == 1 &&  _ac getVariable "fza_ah64_rfjon" == 0 && _ac getVariable "fza_ah64_aseautopage" == 2) then {
-        _rfjammerscript = [_ac] execvm "\fza_ah64_controls\scripting\rf_jammer.sqf";
-    };
-    if (_hostile iskindof _x && _ac getVariable "fza_ah64_irjstate" == 1 && _ac getVariable "fza_ah64_irjon" == 0 && _ac getVariable "fza_ah64_aseautopage" == 2) then {
-        _irjammerscript = [_ac] execvm "\fza_ah64_controls\scripting\ir_jammer.sqf";
+    if (_hostile iskindof _x && _heli getVariable "fza_ah64_rfjstate" == 1 && _heli getVariable "fza_ah64_rfjon" == 0 ) then {
+        _rfjammerscript = _this spawn fza_fnc_aseHandleRfcontrol;
     };
 }
 foreach fza_ah64_ada_units;
@@ -44,7 +66,7 @@ if (_posac select 2 > _poshostile select 2) then
 	_highlow = "Low";
 };
 
-_theta = [_ac, (getpos _ac select 0), (getpos _ac select 1), (_poshostile select 0), (_poshostile select 1)] call fza_fnc_relativeDirection;
+_theta = [_heli, (getpos _heli select 0), (getpos _heli select 1), (_poshostile select 0), (_poshostile select 1)] call fza_fnc_relativeDirection;
 _oclock = 12;
 
 if (_theta > 15 && _theta < 46) then
@@ -113,27 +135,18 @@ if (_theta > 315 && _theta < 346) then
 	_clockaud = "fza_ah64_bt_11oclock";
 };
 
-if(!(_hostile in fza_ah64_threatfiring)) then {fza_ah64_threatfiring = fza_ah64_threatfiring + [_hostile];};
-if (_ac getVariable "fza_ah64_aseautopage" == 2) then {
-        [_ac, 1, "ase"] call fza_fnc_mpdSetDisplay;
-    };
-
-if (_ac getVariable "fza_ah64_aseautopage" >= 1 && (_range < 8000)) then {
-	_ac vehiclechat format ["Missile %1 OClock %2 %3 Meters",_oclock,_highlow,_range];
+if (_range < 8000) then {
+	_heli vehiclechat format ["Missile %1 OClock %2 %3 Meters",_oclock,_highlow,_range];
 	_bthlsound = "fza_ah64_bt_" + _highlow;
 	if (_usesound) then { 
 		["fza_ah64_bt_missile", 0.65, _clockaud, 1.3, _bthlsound, 0.62] spawn fza_fnc_playAudio;
 	};
 };
 
-fza_ah64_threatfiring = fza_ah64_threatfiring - [_hostile];
-if (_ac getVariable "fza_ah64_rfjstate" == 1) then {_ac setVariable ["fza_ah64_rfjon", 0, true];};
-if (_ac getVariable "fza_ah64_irjstate" == 1) then {_ac setVariable ["fza_ah64_irjon", 0, true];};
-
-if(local _ac && !(player == driver _ac) || !(player == gunner _ac)) then
+if(local _heli && !(player == driver _heli) || !(player == gunner _heli)) then
 {
 	_missile = nearestobject [_hostile,_munition];
-	_posac = getpos _ac;
+	_posac = getpos _heli;
 	_poshostile = getpos _missile;
 	_range = _poshostile distance _posac;
 	_highlow = "High";
@@ -141,17 +154,17 @@ if(local _ac && !(player == driver _ac) || !(player == gunner _ac)) then
 	_rand = 4;
 
 	////ASE PAGE LINK////
-	waitUntil {((_ac getVariable "fza_ah64_rfjstate" == 1 && (_ac getVariable "fza_ah64_aseautopage" == 2)) || (_ac getVariable "fza_ah64_rfjon" == 1) || !(alive _missile))};
+	waitUntil {((_heli getVariable "fza_ah64_rfjstate" == 1) || (_heli getVariable "fza_ah64_rfjon" == 1) || !(alive _missile))};
 	if !(alive _missile) exitwith {};
 	////ASE PAGE LINK END////
 
 	if(typeof _missile in fza_ah64_mis_ir) then {_rand = 5;};
 	if(typeof _missile in fza_ah64_mis_rf) then {_rand = 4;};
 	if (floor random 10 < _rand) exitwith {};
-	waitUntil {_missile distance _ac < 350};
-	while {(alive _missile) && (alive _ac)} do
+	waitUntil {_missile distance _heli < 350};
+	while {(alive _missile) && (alive _heli)} do
 	{
-		_mistheta = [_ac, (getpos _ac select 0), (getpos _ac select 1), (_poshostile select 0), (_poshostile select 1)] call fza_fnc_relativeDirection;
+		_mistheta = [_heli, (getpos _heli select 0), (getpos _heli select 1), (_poshostile select 0), (_poshostile select 1)] call fza_fnc_relativeDirection;
 		_missile setdir (_mistheta - (random _chance1));
 		_pbvar = _missile call fza_fnc_getPitchBank;
 		_pitch = _pbvar select 0;
@@ -165,3 +178,10 @@ if(local _ac && !(player == driver _ac) || !(player == gunner _ac)) then
 	sleep 5;
 	_hostile setVariable ["fza_ah64_shotCounter", 0];*/
 };
+
+//kill jammer after script
+if (_heli getVariable "fza_ah64_rfjstate" == 1) then {_heli setVariable ["fza_ah64_rfjon", 0, true];};
+
+
+sleep 15;
+fza_ah64_threatfiring = fza_ah64_threatfiring - [_hostile];

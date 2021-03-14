@@ -1,5 +1,6 @@
 class CfgAmmo
 {
+	class Default{};
 	class B_30mm_HE;
 	class Bulletbase;
 	class MissileCore;
@@ -30,7 +31,7 @@ class CfgAmmo
 		initTime = 0;
 		aiAmmoUsageFlags = 8;	
 	};
-	class fza_master: Bulletbase
+	class fza_master: Default
 	{
 		airLock=0;
 		irLock=0;
@@ -213,7 +214,7 @@ class CfgAmmo
 		missileLockCone = 40;
 		missileKeepLockedCone = 40;
 		missileManualControlCone = 40;
-		weaponLockSystem = "4 + 16"
+		weaponLockSystem = "4 + 16";
 		weaponType = "missileAA";
 		class Components : Components
 		{

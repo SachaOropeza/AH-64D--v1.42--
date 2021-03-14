@@ -734,13 +734,7 @@ if (_heli getVariable "fza_ah64_fcrcscope") then {
         _coords = worldtoscreen(getpos _x);
         _type = "\fza_ah64_US\tex\ICONS\ah64_hc_pfz.paa";
 
-        _adaunit = false;
-        _i = _x; {
-            if (_i iskindof _x) then {
-                _adaunit = true;
-            };
-        }
-        foreach fza_ah64_ada_units;
+        _adaunit = [_x] call fza_fnc_targetIsADA;
 
         if (_x isKindOf "helicopter") then {
             _type = "\fza_ah64_US\tex\ICONS\ah64_hc_pfz.paa";
