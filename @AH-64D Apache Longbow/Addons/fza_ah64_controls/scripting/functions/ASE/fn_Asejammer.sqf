@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: fza_fnc_Asejammer
+Function: fza_fnc_aseJammer
 Description:
     Audio & text warning of direction of incoming missile
     jamming of missile if ase page jammer active
@@ -13,7 +13,7 @@ Returns:
 	Nothing
 	
 Examples:
-	_this spawn fza_fnc_Asejammer;
+	_this spawn fza_fnc_aseJammer;
 	
 Author:
 	ollieollieolllie
@@ -37,9 +37,9 @@ _range = _poshostile distance _posac;
 _highlow = "High";
 
 ////Reduces the missiles 2 cores to 1 activation
-_fza_ah64_incominghandled = _hostile getVariable ["fza_ah64_shotCounter", 0];
-_hostile setVariable ["fza_ah64_shotCounter", (_fza_ah64_incominghandled + 1) % 2];
-if (_fza_ah64_incominghandled % 2 == 1) exitWith {};
+_counter = _hostile getVariable ["fza_ah64_shotCounter", 0];
+_hostile setVariable ["fza_ah64_shotCounter", (_counter + 1) % 2];
+if (_counter % 2 == 1) exitWith {};
 
 if(!(_hostile in fza_ah64_threatfiring)) then {fza_ah64_threatfiring = fza_ah64_threatfiring + [_hostile];};
 if (_heli getVariable "fza_ah64_aseautopage" == 2) then {

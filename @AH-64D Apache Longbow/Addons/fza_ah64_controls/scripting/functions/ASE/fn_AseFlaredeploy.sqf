@@ -1,11 +1,11 @@
 /* ----------------------------------------------------------------------------
-Function: fza_fnc_AseFlaredeploy
+Function: fza_fnc_aseFlaredeploy
 
 Description:
-    deploys flare if ir jam enables on ase
+    Deploys flare if IR jamming is enabled
 
 Parameters:
-    _heli - The helicopter that fired it
+    _heli - The helicopter that has been fired at
     _munition - Missile
     _hostile - is it hostile
     
@@ -13,9 +13,8 @@ Returns:
     Nothing
 
 Examples:
-    _this spawn fza_fnc_AseFlaredeploy;
-	
-Examples:
+    _this spawn fza_fnc_aseFlaredeploy;
+
 Author:
 	ollieollieolllie
 ---------------------------------------------------------------------------- */
@@ -36,9 +35,9 @@ _missile = nearestobject [_hostile,_munition];
 foreach fza_ah64_ada_units;
 
 ////Reduces the missiles 2 cores to 1 activation
-_fza_ah64_incominghandled2 = _hostile getVariable ["fza_ah64_shotCounter2", 0];
-_hostile setVariable ["fza_ah64_shotCounter2", (_fza_ah64_incominghandled2 + 1) % 2];
-if (_fza_ah64_incominghandled2 % 2 == 1) exitWith {};
+_counter = _hostile getVariable ["fza_ah64_shotCounter2", 0];
+_hostile setVariable ["fza_ah64_shotCounter2", (_counter + 1) % 2];
+if (_counter % 2 == 1) exitWith {};
 
 ////ASE PAGE LINK////
 waitUntil {((_heli getVariable "fza_ah64_irjstate" == 1) || (_heli getVariable "fza_ah64_irjon" == 1) || !(alive _missile))};

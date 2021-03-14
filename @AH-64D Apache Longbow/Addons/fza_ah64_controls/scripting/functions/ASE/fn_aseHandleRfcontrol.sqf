@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: fza_fnc_aseHandleRfcontrol
+Function: fza_fnc_aseHandleRfControl
 
 Description:
     Handles the RF jammer overheat
@@ -18,7 +18,7 @@ Author:
 ---------------------------------------------------------------------------- */
 params ["_heli"];
 
-if (!("fza_ah64_rfjamfail" in ((vehicle player) magazinesturret[-1]))) then {
+if (!("fza_ah64_rfJamfail" in ((vehicle player) magazinesturret[-1]))) then {
     _heli setVariable ["fza_ah64_rfjon", 1, true];
     while {
         (fza_ah64_rfjammer < 61 && _heli getVariable "fza_ah64_rfjon" == 1)

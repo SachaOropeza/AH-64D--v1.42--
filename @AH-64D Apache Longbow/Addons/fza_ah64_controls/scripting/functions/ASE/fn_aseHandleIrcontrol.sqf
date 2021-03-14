@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: fza_fnc_aseHandleIrcontrol
+Function: fza_fnc_aseHandleIrControl
 
 Description:
     Handles the IR jammer overheat
@@ -18,7 +18,7 @@ Author:
 ---------------------------------------------------------------------------- */
 params ["_heli"];
 
-if (!("fza_ah64_irjamfail" in ((vehicle player) magazinesturret[-1]))) then {
+if (!("fza_ah64_irJamfail" in ((vehicle player) magazinesturret[-1]))) then {
     _heli setVariable ["fza_ah64_irjon", 1, true];
     while {
         (fza_ah64_irjammer < 61 && _heli getVariable "fza_ah64_irjon" == 1)
